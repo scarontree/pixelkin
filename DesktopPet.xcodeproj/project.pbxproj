@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		087E64405BD7FF65A04535F9 /* PetRuntimeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6FE5CC81166A9C8A549B63 /* PetRuntimeState.swift */; };
+		0B7D3DD79F43ED696D2D113E /* AnimationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C034C799B92985A5EF2AA /* AnimationAdapter.swift */; };
+		170ED20C4DC67554FCC5256F /* ContextBubbleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B3BCE9E3FD17ED25DEECF /* ContextBubbleController.swift */; };
+		1AAD75091FBAEDFCF4FA94DE /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7759D394C536F33270DEB /* SettingsStore.swift */; };
+		2659DA5401964925383B0374 /* WindowDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C85CA2EAE4456ED4DB1D2FC /* WindowDetector.swift */; };
+		2780946FBB9C678742023F26 /* PetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A4B3DCA2B5B62786C4E4A /* PetView.swift */; };
+		3E79844440A0188D715D1368 /* PetPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6AFB13616EC7DC224BC52 /* PetPanel.swift */; };
+		42DB854FC657ABB4117CE65C /* SkinManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9CE7237E4940F662CF665 /* SkinManifest.swift */; };
+		4654BE8AE10641679F0BC83C /* AppPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25897E5A9247015D66227C8B /* AppPaths.swift */; };
+		4D3FE86B03ADCCE9CAAD26ED /* SkinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4063FD69F9730972982DC6 /* SkinService.swift */; };
+		4F06EBFC5094F086E49ECF1B /* GifAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1635B04A741688A681D1A /* GifAdapter.swift */; };
+		52033F5186485B4F778DC10F /* PetBehaviorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EFF28B5153CA7CDD034FB /* PetBehaviorState.swift */; };
+		570322A2517954A56B42774C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 903BB783F2E84D86D83E6753 /* Assets.xcassets */; };
+		6D318CC138829C2D96057BB0 /* SpriteAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A041328E60E6126875CFC933 /* SpriteAdapter.swift */; };
+		6E8143A1D1996764DA17E3B7 /* BehaviorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE8EA5539B734B50722D72 /* BehaviorController.swift */; };
+		76B29D83D13F12355EC9CE65 /* SkinGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E01BE301D6AB77EEF8DCB /* SkinGalleryView.swift */; };
+		795487B738808782C84477B1 /* SkinCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F177E06D456F94C62B1A7686 /* SkinCard.swift */; };
+		79FC7B4FC500A9A051274837 /* AdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DAD9B07C5B690658631A4 /* AdapterFactory.swift */; };
+		7BF59E8B61A1E7023C49A8E1 /* PetBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054188A5F46FAAAF908D8ECD /* PetBubbleView.swift */; };
+		7CED8BB053D34D644374338A /* DesktopPetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */; };
+		7D32A245FFF64BA4B89AA07B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */; };
+		7F92B62968C44569602F1A06 /* BubbleRuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */; };
+		8B2F6EB59AD81C3B4776BDC6 /* SvgAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FEECA69CB5BE6A7F69E75B /* SvgAdapter.swift */; };
+		98B8CC4E4382F403196A3A3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B222FA245BEDE6276A451320 /* AppDelegate.swift */; };
+		A8794D96A4F7589F43BE5724 /* PetRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7714AF1DCF58066DE714449 /* PetRenderView.swift */; };
+		ACA6A338699042134F4B426C /* PetWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF4FCB7F0EFE54971D3F066 /* PetWindowController.swift */; };
+		B4F17F9AFB2509A27396BC3F /* PetPhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B83B968F7A8031EDBA37A0 /* PetPhysicsController.swift */; };
+		D0CBACD8D9F67CD804FBD854 /* ManifestEditorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED88041550FA998CD59363C7 /* ManifestEditorModal.swift */; };
+		D2EB83EAE2582070D3E5B54A /* HitTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC19F2003E2AAF68B3FB1D9 /* HitTestView.swift */; };
+		E01C286B9DFE36D5BA195C87 /* SkinEditorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F6AA4378A2D6E2620AE8C /* SkinEditorModal.swift */; };
+		E0DF1BD59C21AAA3001DC8C1 /* PanelRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A3C20357B095AF46F3C85 /* PanelRootView.swift */; };
+		FB07F48B837D108592A0BC01 /* SpriteRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A4DF900B8F46C330F4DBF1 /* SpriteRenderView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		054188A5F46FAAAF908D8ECD /* PetBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetBubbleView.swift; sourceTree = "<group>"; };
+		07F9CE7237E4940F662CF665 /* SkinManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinManifest.swift; sourceTree = "<group>"; };
+		0E6FE5CC81166A9C8A549B63 /* PetRuntimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRuntimeState.swift; sourceTree = "<group>"; };
+		1661E10AC314B54F6929CA0B /* DesktopPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		217DAD9B07C5B690658631A4 /* AdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterFactory.swift; sourceTree = "<group>"; };
+		25897E5A9247015D66227C8B /* AppPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPaths.swift; sourceTree = "<group>"; };
+		27A4DF900B8F46C330F4DBF1 /* SpriteRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteRenderView.swift; sourceTree = "<group>"; };
+		45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		486E01BE301D6AB77EEF8DCB /* SkinGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinGalleryView.swift; sourceTree = "<group>"; };
+		4C1A4B3DCA2B5B62786C4E4A /* PetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetView.swift; sourceTree = "<group>"; };
+		64BE8EA5539B734B50722D72 /* BehaviorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorController.swift; sourceTree = "<group>"; };
+		6C85CA2EAE4456ED4DB1D2FC /* WindowDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDetector.swift; sourceTree = "<group>"; };
+		73FEECA69CB5BE6A7F69E75B /* SvgAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgAdapter.swift; sourceTree = "<group>"; };
+		802F6AA4378A2D6E2620AE8C /* SkinEditorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinEditorModal.swift; sourceTree = "<group>"; };
+		86B7759D394C536F33270DEB /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		89B83B968F7A8031EDBA37A0 /* PetPhysicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPhysicsController.swift; sourceTree = "<group>"; };
+		8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleRuleSet.swift; sourceTree = "<group>"; };
+		8FF4FCB7F0EFE54971D3F066 /* PetWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWindowController.swift; sourceTree = "<group>"; };
+		903BB783F2E84D86D83E6753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9ED1635B04A741688A681D1A /* GifAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAdapter.swift; sourceTree = "<group>"; };
+		A041328E60E6126875CFC933 /* SpriteAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteAdapter.swift; sourceTree = "<group>"; };
+		A04EFF28B5153CA7CDD034FB /* PetBehaviorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetBehaviorState.swift; sourceTree = "<group>"; };
+		ABC19F2003E2AAF68B3FB1D9 /* HitTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitTestView.swift; sourceTree = "<group>"; };
+		B222FA245BEDE6276A451320 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B30C034C799B92985A5EF2AA /* AnimationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationAdapter.swift; sourceTree = "<group>"; };
+		C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopPetApp.swift; sourceTree = "<group>"; };
+		CA4063FD69F9730972982DC6 /* SkinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinService.swift; sourceTree = "<group>"; };
+		CB6B3BCE9E3FD17ED25DEECF /* ContextBubbleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextBubbleController.swift; sourceTree = "<group>"; };
+		D2C6AFB13616EC7DC224BC52 /* PetPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPanel.swift; sourceTree = "<group>"; };
+		D7714AF1DCF58066DE714449 /* PetRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRenderView.swift; sourceTree = "<group>"; };
+		ED6A3C20357B095AF46F3C85 /* PanelRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelRootView.swift; sourceTree = "<group>"; };
+		ED88041550FA998CD59363C7 /* ManifestEditorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManifestEditorModal.swift; sourceTree = "<group>"; };
+		F177E06D456F94C62B1A7686 /* SkinCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCard.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0DA36880BFD65BDB09BC37FF /* Persona */ = {
+			isa = PBXGroup;
+			children = (
+				760BA140322365ED69B3FBE8 /* Chats */,
+			);
+			path = Persona;
+			sourceTree = "<group>";
+		};
+		0F210A8FE9E6A69AE670242A /* Pet */ = {
+			isa = PBXGroup;
+			children = (
+				054188A5F46FAAAF908D8ECD /* PetBubbleView.swift */,
+				D7714AF1DCF58066DE714449 /* PetRenderView.swift */,
+				4C1A4B3DCA2B5B62786C4E4A /* PetView.swift */,
+			);
+			path = Pet;
+			sourceTree = "<group>";
+		};
+		12CC3834953F4197D904C536 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FADC488232CF045199A312B7 /* Components */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1AE4FEE51FC9739A1A4CA25F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */,
+				B222FA245BEDE6276A451320 /* AppDelegate.swift */,
+				C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2B35376C97AB9FAEF6AC8FBD /* Config */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		31A074D193CD6B51ABC2B383 /* UserPersona */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserPersona;
+			sourceTree = "<group>";
+		};
+		49D9432F50A163488682B339 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2B35376C97AB9FAEF6AC8FBD /* Config */,
+				B6465565719DC69A2FB47C5B /* Memory */,
+				0DA36880BFD65BDB09BC37FF /* Persona */,
+				31A074D193CD6B51ABC2B383 /* UserPersona */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6830FB74087E9670012CD97E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E45993D13CFAAC523D300916 /* Models */,
+				D248EFB946F471D314F83CD7 /* PetRuntime */,
+				A0784154E9BD9C786E08CD1B /* Services */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		749F6C18C5D4EC47B0DEFDBC /* DesktopPet */ = {
+			isa = PBXGroup;
+			children = (
+				1AE4FEE51FC9739A1A4CA25F /* App */,
+				49D9432F50A163488682B339 /* Data */,
+				6830FB74087E9670012CD97E /* Domain */,
+				D2ACBD47D9C9C04A0FB39C6D /* Features */,
+				76CEEE2AFADC09F0F9463067 /* Infrastructure */,
+				F881E10780667F5D2087D188 /* Resources */,
+			);
+			path = DesktopPet;
+			sourceTree = "<group>";
+		};
+		760BA140322365ED69B3FBE8 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		76CEEE2AFADC09F0F9463067 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				AEE0137180E5F2D06EC28967 /* Animation */,
+				AF8D96303F55A4D25D485D38 /* Persistence */,
+				7B4B79ABD4AB29D5B2E81626 /* Windowing */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		7B4B79ABD4AB29D5B2E81626 /* Windowing */ = {
+			isa = PBXGroup;
+			children = (
+				ABC19F2003E2AAF68B3FB1D9 /* HitTestView.swift */,
+				D2C6AFB13616EC7DC224BC52 /* PetPanel.swift */,
+				89B83B968F7A8031EDBA37A0 /* PetPhysicsController.swift */,
+				8FF4FCB7F0EFE54971D3F066 /* PetWindowController.swift */,
+				6C85CA2EAE4456ED4DB1D2FC /* WindowDetector.swift */,
+			);
+			path = Windowing;
+			sourceTree = "<group>";
+		};
+		88A118DBDA08F28F53402239 = {
+			isa = PBXGroup;
+			children = (
+				749F6C18C5D4EC47B0DEFDBC /* DesktopPet */,
+				B51D49DFAACF519D3956E3A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A0784154E9BD9C786E08CD1B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				217DAD9B07C5B690658631A4 /* AdapterFactory.swift */,
+				86B7759D394C536F33270DEB /* SettingsStore.swift */,
+				CA4063FD69F9730972982DC6 /* SkinService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AEE0137180E5F2D06EC28967 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				B30C034C799B92985A5EF2AA /* AnimationAdapter.swift */,
+				9ED1635B04A741688A681D1A /* GifAdapter.swift */,
+				A041328E60E6126875CFC933 /* SpriteAdapter.swift */,
+				27A4DF900B8F46C330F4DBF1 /* SpriteRenderView.swift */,
+				73FEECA69CB5BE6A7F69E75B /* SvgAdapter.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		AF8D96303F55A4D25D485D38 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				25897E5A9247015D66227C8B /* AppPaths.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		B51D49DFAACF519D3956E3A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1661E10AC314B54F6929CA0B /* DesktopPet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6465565719DC69A2FB47C5B /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Memory;
+			sourceTree = "<group>";
+		};
+		D248EFB946F471D314F83CD7 /* PetRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				64BE8EA5539B734B50722D72 /* BehaviorController.swift */,
+				CB6B3BCE9E3FD17ED25DEECF /* ContextBubbleController.swift */,
+				0E6FE5CC81166A9C8A549B63 /* PetRuntimeState.swift */,
+			);
+			path = PetRuntime;
+			sourceTree = "<group>";
+		};
+		D2ACBD47D9C9C04A0FB39C6D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FFC8D18D3064C5578F30325E /* Panel */,
+				0F210A8FE9E6A69AE670242A /* Pet */,
+				12CC3834953F4197D904C536 /* Shared */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		E45993D13CFAAC523D300916 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */,
+				A04EFF28B5153CA7CDD034FB /* PetBehaviorState.swift */,
+				07F9CE7237E4940F662CF665 /* SkinManifest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F881E10780667F5D2087D188 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				903BB783F2E84D86D83E6753 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FADC488232CF045199A312B7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FFC8D18D3064C5578F30325E /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				ED88041550FA998CD59363C7 /* ManifestEditorModal.swift */,
+				ED6A3C20357B095AF46F3C85 /* PanelRootView.swift */,
+				F177E06D456F94C62B1A7686 /* SkinCard.swift */,
+				802F6AA4378A2D6E2620AE8C /* SkinEditorModal.swift */,
+				486E01BE301D6AB77EEF8DCB /* SkinGalleryView.swift */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		245BE001D4ABD97CAD72169D /* DesktopPet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14EB8EBC796B5E65F0DECBD4 /* Build configuration list for PBXNativeTarget "DesktopPet" */;
+			buildPhases = (
+				FAD9061DC963DA014BAFEA8C /* Sources */,
+				66ABE7EB8A58234C572D36E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DesktopPet;
+			packageProductDependencies = (
+			);
+			productName = DesktopPet;
+			productReference = 1661E10AC314B54F6929CA0B /* DesktopPet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8285C956FB86F101F11E7A04 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					245BE001D4ABD97CAD72169D = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C1B640976EE12236A320E134 /* Build configuration list for PBXProject "DesktopPet" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 88A118DBDA08F28F53402239;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B51D49DFAACF519D3956E3A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				245BE001D4ABD97CAD72169D /* DesktopPet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66ABE7EB8A58234C572D36E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				570322A2517954A56B42774C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAD9061DC963DA014BAFEA8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79FC7B4FC500A9A051274837 /* AdapterFactory.swift in Sources */,
+				0B7D3DD79F43ED696D2D113E /* AnimationAdapter.swift in Sources */,
+				7D32A245FFF64BA4B89AA07B /* AppCoordinator.swift in Sources */,
+				98B8CC4E4382F403196A3A3C /* AppDelegate.swift in Sources */,
+				4654BE8AE10641679F0BC83C /* AppPaths.swift in Sources */,
+				6E8143A1D1996764DA17E3B7 /* BehaviorController.swift in Sources */,
+				7F92B62968C44569602F1A06 /* BubbleRuleSet.swift in Sources */,
+				170ED20C4DC67554FCC5256F /* ContextBubbleController.swift in Sources */,
+				7CED8BB053D34D644374338A /* DesktopPetApp.swift in Sources */,
+				4F06EBFC5094F086E49ECF1B /* GifAdapter.swift in Sources */,
+				D2EB83EAE2582070D3E5B54A /* HitTestView.swift in Sources */,
+				D0CBACD8D9F67CD804FBD854 /* ManifestEditorModal.swift in Sources */,
+				E0DF1BD59C21AAA3001DC8C1 /* PanelRootView.swift in Sources */,
+				52033F5186485B4F778DC10F /* PetBehaviorState.swift in Sources */,
+				7BF59E8B61A1E7023C49A8E1 /* PetBubbleView.swift in Sources */,
+				3E79844440A0188D715D1368 /* PetPanel.swift in Sources */,
+				B4F17F9AFB2509A27396BC3F /* PetPhysicsController.swift in Sources */,
+				A8794D96A4F7589F43BE5724 /* PetRenderView.swift in Sources */,
+				087E64405BD7FF65A04535F9 /* PetRuntimeState.swift in Sources */,
+				2780946FBB9C678742023F26 /* PetView.swift in Sources */,
+				ACA6A338699042134F4B426C /* PetWindowController.swift in Sources */,
+				1AAD75091FBAEDFCF4FA94DE /* SettingsStore.swift in Sources */,
+				795487B738808782C84477B1 /* SkinCard.swift in Sources */,
+				E01C286B9DFE36D5BA195C87 /* SkinEditorModal.swift in Sources */,
+				76B29D83D13F12355EC9CE65 /* SkinGalleryView.swift in Sources */,
+				42DB854FC657ABB4117CE65C /* SkinManifest.swift in Sources */,
+				4D3FE86B03ADCCE9CAAD26ED /* SkinService.swift in Sources */,
+				6D318CC138829C2D96057BB0 /* SpriteAdapter.swift in Sources */,
+				FB07F48B837D108592A0BC01 /* SpriteRenderView.swift in Sources */,
+				8B2F6EB59AD81C3B4776BDC6 /* SvgAdapter.swift in Sources */,
+				2659DA5401964925383B0374 /* WindowDetector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2834CF665F0C246B7ACBAAFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		710BE130989EE10277F1ABE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DesktopPet/DesktopPet.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DesktopPet;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.desktoppet.app;
+				PRODUCT_NAME = DesktopPet;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B95AC907C2DD010731D22537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DesktopPet/DesktopPet.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DesktopPet;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_LSUIElement = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.desktoppet.app;
+				PRODUCT_NAME = DesktopPet;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FCDF93A8A2FDBD46F8923F3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14EB8EBC796B5E65F0DECBD4 /* Build configuration list for PBXNativeTarget "DesktopPet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				710BE130989EE10277F1ABE2 /* Debug */,
+				B95AC907C2DD010731D22537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C1B640976EE12236A320E134 /* Build configuration list for PBXProject "DesktopPet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2834CF665F0C246B7ACBAAFE /* Debug */,
+				FCDF93A8A2FDBD46F8923F3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8285C956FB86F101F11E7A04 /* Project object */;
+}

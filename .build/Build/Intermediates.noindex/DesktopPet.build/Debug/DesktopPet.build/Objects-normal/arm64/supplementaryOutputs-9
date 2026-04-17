@@ -1,0 +1,23 @@
+{
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Domain/Models/SkinManifest.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinManifest.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinManifest.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinManifest.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinManifest.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinManifest.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Domain/Services/SkinService.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinService.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinService.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinService.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinService.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinService.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Infrastructure/Animation/SpriteAdapter.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SpriteAdapter.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SpriteAdapter.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SpriteAdapter.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SpriteAdapter.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SpriteAdapter.swiftdeps"
+  }
+}

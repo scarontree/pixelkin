@@ -1,0 +1,23 @@
+{
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Features/Panel/ManifestEditorModal.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/ManifestEditorModal.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/ManifestEditorModal.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/ManifestEditorModal.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/ManifestEditorModal.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/ManifestEditorModal.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Infrastructure/Animation/GifAdapter.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/GifAdapter.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/GifAdapter.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/GifAdapter.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/GifAdapter.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/GifAdapter.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Infrastructure/Windowing/HitTestView.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/HitTestView.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/HitTestView.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/HitTestView.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/HitTestView.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/HitTestView.swiftdeps"
+  }
+}

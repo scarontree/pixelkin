@@ -1,0 +1,40 @@
+name: DesktopPet
+options:
+  bundleIdPrefix: com.desktoppet
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+
+targets:
+  DesktopPet:
+    type: application
+    platform: macOS
+    sources:
+      - path: DesktopPet
+        excludes:
+          - "**/*.entitlements"
+    resources:
+      - path: DesktopPet/Resources/Assets.xcassets
+      - path: DesktopPet/Resources/Skins
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.desktoppet.app
+        PRODUCT_NAME: DesktopPet
+        INFOPLIST_KEY_CFBundleDisplayName: DesktopPet
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.entertainment"
+        GENERATE_INFOPLIST_FILE: YES
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: "1.0.0"
+        CODE_SIGN_ENTITLEMENTS: DesktopPet/DesktopPet.entitlements
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_APP_SANDBOX: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        # 不在 Dock 显示图标（纯菜单栏应用）
+        INFOPLIST_KEY_LSUIElement: YES

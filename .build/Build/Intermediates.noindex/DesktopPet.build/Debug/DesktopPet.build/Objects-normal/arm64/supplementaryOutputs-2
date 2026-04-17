@@ -1,0 +1,23 @@
+{
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/App/AppDelegate.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppDelegate.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppDelegate.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Domain/PetRuntime/BehaviorController.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/BehaviorController.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/BehaviorController.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/BehaviorController.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/BehaviorController.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/BehaviorController.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Infrastructure/Persistence/AppPaths.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppPaths.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppPaths.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppPaths.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppPaths.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/AppPaths.swiftdeps"
+  }
+}

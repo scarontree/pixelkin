@@ -1,0 +1,23 @@
+{
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Features/Panel/SkinCard.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinCard.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinCard.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinCard.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinCard.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinCard.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Features/Panel/SkinEditorModal.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinEditorModal.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinEditorModal.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinEditorModal.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinEditorModal.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinEditorModal.swiftdeps"
+  },
+  "/Users/qom/Documents/projects/desktop-pet-macos/DesktopPet/Features/Panel/SkinGalleryView.swift" : {
+    "const-values" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinGalleryView.swiftconstvalues",
+    "dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinGalleryView.d",
+    "diagnostics" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinGalleryView.dia",
+    "object" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinGalleryView.o",
+    "swift-dependencies" : "/Users/qom/Documents/projects/desktop-pet-macos/.build/Build/Intermediates.noindex/DesktopPet.build/Debug/DesktopPet.build/Objects-normal/arm64/SkinGalleryView.swiftdeps"
+  }
+}
