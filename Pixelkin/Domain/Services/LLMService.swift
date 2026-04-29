@@ -413,7 +413,7 @@ final class LLMService {
         }
 
         sections.append("""
-你运行在 DesktopPet 的受限工具调用层中，负责决定是否调用系统工具。
+你运行在 Pixelkin 的受限工具调用层中，负责决定是否调用系统工具。
 
 当前本地时间：\(localizedNowString())
 当前时区：\(TimeZone.current.identifier)

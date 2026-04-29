@@ -1,4 +1,4 @@
-# DesktopPet
+# Pixelkin
 
 macOS 原生桌面宠物应用。一只会走路、会睡觉、会趴窗口、会吐槽你在干什么的小动物常驻桌面。
 
@@ -28,10 +28,10 @@ brew install xcodegen
 xcodegen generate
 
 # 构建
-xcodebuild -project DesktopPet.xcodeproj -scheme DesktopPet -configuration Debug build
+xcodebuild -project Pixelkin.xcodeproj -scheme Pixelkin -configuration Debug build
 
 # 或直接在 Xcode 打开
-open DesktopPet.xcodeproj
+open Pixelkin.xcodeproj
 ```
 
 ## 架构
@@ -57,4 +57,4 @@ Features 层      — SwiftUI View
 - **GIF** — GIF 解码
 - **SVG** — 矢量动画（WebKit 渲染）
 
-皮肤放置于 `~/Library/Application Support/DesktopPet/Skins/{skinID}/`。
+皮肤放置于 `~/Library/Application Support/Pixelkin/Skins/{skinID}/`。

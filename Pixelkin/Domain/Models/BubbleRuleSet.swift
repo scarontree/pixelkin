@@ -1,7 +1,7 @@
 import Foundation
 
 /// 情境气泡规则集
-/// 存储位置：~/Library/Application Support/DesktopPet/bubble_rules.json
+/// 存储位置：~/Library/Application Support/Pixelkin/bubble_rules.json
 ///
 /// 设计原则：规则和语录分离
 /// - BubbleRuleSet：定义触发条件（app 分组 / 时间 / 日期）+ 兜底语录
@@ -347,7 +347,7 @@ struct BubbleRule: Codable, Identifiable {
 
 /// 角色语录本 — 跟着皮肤走的角色专属台词
 ///
-/// 文件位置：~/Library/Application Support/DesktopPet/Skins/{skinID}/phrases.json
+/// 文件位置：~/Library/Application Support/Pixelkin/Skins/{skinID}/phrases.json
 ///
 /// key 为规则 ID（同时覆盖应用触发 / 时间触发 / 日期触发三类规则），
 /// 例如 "browsers", "morning", "christmas", "default" 等。

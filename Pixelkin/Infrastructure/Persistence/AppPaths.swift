@@ -3,10 +3,10 @@ import Foundation
 /// 应用数据目录统一管理
 /// 所有 Service 通过此枚举获取路径，NEVER 在代码中硬编码路径
 enum AppPaths {
-    /// ~/Library/Application Support/DesktopPet/
+    /// ~/Library/Application Support/Pixelkin/
     static var appSupport: URL {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        return base.appendingPathComponent("DesktopPet")
+        return base.appendingPathComponent("Pixelkin")
     }
     
     /// 用户皮肤目录（唯一真数据源）

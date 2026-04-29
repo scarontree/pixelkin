@@ -1,13 +1,13 @@
 import SwiftUI
 
 @main
-struct DesktopPetApp: App {
+struct PixelkinApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.openWindow) private var openWindow
     
     var body: some Scene {
         // 控制面板窗口
-        Window("DesktopPet 控制面板", id: "control-panel") {
+        Window("Pixelkin 控制面板", id: "control-panel") {
             PanelRootView(coordinator: appDelegate.coordinator)
                 .frame(minWidth: 600, minHeight: 400)
                 .background(
@@ -79,7 +79,7 @@ private struct MenuBarLabel: View {
         if let nearest = timerManager.nearestPendingItem {
             Label(nearest.menuBarDisplay, systemImage: nearest.sfSymbolName)
         } else {
-            Label("DesktopPet", systemImage: "pawprint.fill")
+            Label("Pixelkin", systemImage: "pawprint.fill")
         }
     }
 }

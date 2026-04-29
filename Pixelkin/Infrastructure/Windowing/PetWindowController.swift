@@ -207,7 +207,7 @@ final class PetWindowController {
     // MARK: - 右键菜单
     
     private func buildContextMenu() -> NSMenu {
-        let menu = NSMenu(title: "DesktopPet")
+        let menu = NSMenu(title: "Pixelkin")
         
         menu.addItem(withTitle: "打开控制面板", action: #selector(menuOpenPanel), keyEquivalent: "")
             .target = self
@@ -220,7 +220,7 @@ final class PetWindowController {
         
         menu.addItem(.separator())
         
-        menu.addItem(withTitle: "退出 DesktopPet", action: #selector(menuQuit), keyEquivalent: "")
+        menu.addItem(withTitle: "退出 Pixelkin", action: #selector(menuQuit), keyEquivalent: "")
             .target = self
         
         return menu

@@ -6,7 +6,7 @@ import Foundation
 @MainActor
 enum SettingsStore {
     private static let defaults = UserDefaults.standard
-    private static let settingsKey = "desktop_pet.settings"
+    private static let settingsKey = "pixelkin.settings"
 
     struct StoredSettings: Codable {
         var selectedSkinID: String

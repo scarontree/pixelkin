@@ -76,7 +76,7 @@ enum SystemActionService {
         timerManager: TimerManager?
     ) async throws -> ToolExecutionResult {
         let scheduledAt = try requiredDate("scheduledAt", in: arguments)
-        let title = optionalString("title", in: arguments) ?? "DesktopPet 闹钟"
+        let title = optionalString("title", in: arguments) ?? "Pixelkin 闹钟"
         let note = optionalString("note", in: arguments)
         try await requestNotificationAccess()
 
@@ -116,7 +116,7 @@ enum SystemActionService {
         timerManager: TimerManager?
     ) async throws -> ToolExecutionResult {
         let durationSeconds = try requiredPositiveTimeInterval("durationSeconds", in: arguments)
-        let title = optionalString("title", in: arguments) ?? "DesktopPet 倒计时"
+        let title = optionalString("title", in: arguments) ?? "Pixelkin 倒计时"
         let note = optionalString("note", in: arguments)
         try await requestNotificationAccess()
 

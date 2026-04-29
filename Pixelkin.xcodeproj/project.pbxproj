@@ -33,7 +33,7 @@
 		79FC7B4FC500A9A051274837 /* AdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DAD9B07C5B690658631A4 /* AdapterFactory.swift */; };
 		7ADA4870BABB1D2D86236713 /* BubbleRuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E386992FDCD956DDA374F9A /* BubbleRuleService.swift */; };
 		7BF59E8B61A1E7023C49A8E1 /* PetBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054188A5F46FAAAF908D8ECD /* PetBubbleView.swift */; };
-		7CED8BB053D34D644374338A /* DesktopPetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */; };
+		7CED8BB053D34D644374338A /* PixelkinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A0EDE657437354EE5EF2C /* PixelkinApp.swift */; };
 		7D32A245FFF64BA4B89AA07B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */; };
 		7F92B62968C44569602F1A06 /* BubbleRuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */; };
 		7FA7AFD5FC30EDD1C1FEB0EF /* Persona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97C87206C391100A657E8D /* Persona.swift */; };
@@ -61,7 +61,7 @@
 		069EB047963DB5414814CC29 /* BubbleRuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleRuleEditorView.swift; sourceTree = "<group>"; };
 		07F9CE7237E4940F662CF665 /* SkinManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinManifest.swift; sourceTree = "<group>"; };
 		0E6FE5CC81166A9C8A549B63 /* PetRuntimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRuntimeState.swift; sourceTree = "<group>"; };
-		1661E10AC314B54F6929CA0B /* DesktopPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1661E10AC314B54F6929CA0B /* Pixelkin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixelkin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F44EDCE5C4AF01D1B0BF74B /* VariantConditionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantConditionEditor.swift; sourceTree = "<group>"; };
 		217DAD9B07C5B690658631A4 /* AdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterFactory.swift; sourceTree = "<group>"; };
 		25897E5A9247015D66227C8B /* AppPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPaths.swift; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		B222FA245BEDE6276A451320 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B30C034C799B92985A5EF2AA /* AnimationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationAdapter.swift; sourceTree = "<group>"; };
 		B6A21597A92F22BAF3015EEA /* SkinFilesEditorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinFilesEditorModal.swift; sourceTree = "<group>"; };
-		C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopPetApp.swift; sourceTree = "<group>"; };
+		C60A0EDE657437354EE5EF2C /* PixelkinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelkinApp.swift; sourceTree = "<group>"; };
 		CA4063FD69F9730972982DC6 /* SkinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinService.swift; sourceTree = "<group>"; };
 		CB6B3BCE9E3FD17ED25DEECF /* ContextBubbleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextBubbleController.swift; sourceTree = "<group>"; };
 		D2C6AFB13616EC7DC224BC52 /* PetPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPanel.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 			children = (
 				45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */,
 				B222FA245BEDE6276A451320 /* AppDelegate.swift */,
-				C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */,
+				C60A0EDE657437354EE5EF2C /* PixelkinApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -179,7 +179,7 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		749F6C18C5D4EC47B0DEFDBC /* DesktopPet */ = {
+		749F6C18C5D4EC47B0DEFDBC /* Pixelkin */ = {
 			isa = PBXGroup;
 			children = (
 				1AE4FEE51FC9739A1A4CA25F /* App */,
@@ -189,7 +189,7 @@
 				76CEEE2AFADC09F0F9463067 /* Infrastructure */,
 				F881E10780667F5D2087D188 /* Resources */,
 			);
-			path = DesktopPet;
+			path = Pixelkin;
 			sourceTree = "<group>";
 		};
 		760BA140322365ED69B3FBE8 /* Chats */ = {
@@ -224,7 +224,7 @@
 		88A118DBDA08F28F53402239 = {
 			isa = PBXGroup;
 			children = (
-				749F6C18C5D4EC47B0DEFDBC /* DesktopPet */,
+				749F6C18C5D4EC47B0DEFDBC /* Pixelkin */,
 				B51D49DFAACF519D3956E3A6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 		B51D49DFAACF519D3956E3A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1661E10AC314B54F6929CA0B /* DesktopPet.app */,
+				1661E10AC314B54F6929CA0B /* Pixelkin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -349,9 +349,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		245BE001D4ABD97CAD72169D /* DesktopPet */ = {
+		245BE001D4ABD97CAD72169D /* Pixelkin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14EB8EBC796B5E65F0DECBD4 /* Build configuration list for PBXNativeTarget "DesktopPet" */;
+			buildConfigurationList = 14EB8EBC796B5E65F0DECBD4 /* Build configuration list for PBXNativeTarget "Pixelkin" */;
 			buildPhases = (
 				FAD9061DC963DA014BAFEA8C /* Sources */,
 				66ABE7EB8A58234C572D36E2 /* Resources */,
@@ -360,11 +360,11 @@
 			);
 			dependencies = (
 			);
-			name = DesktopPet;
+			name = Pixelkin;
 			packageProductDependencies = (
 			);
-			productName = DesktopPet;
-			productReference = 1661E10AC314B54F6929CA0B /* DesktopPet.app */;
+			productName = Pixelkin;
+			productReference = 1661E10AC314B54F6929CA0B /* Pixelkin.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -381,7 +381,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C1B640976EE12236A320E134 /* Build configuration list for PBXProject "DesktopPet" */;
+			buildConfigurationList = C1B640976EE12236A320E134 /* Build configuration list for PBXProject "Pixelkin" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -395,7 +395,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				245BE001D4ABD97CAD72169D /* DesktopPet */,
+				245BE001D4ABD97CAD72169D /* Pixelkin */,
 			);
 		};
 /* End PBXProject section */
@@ -429,7 +429,7 @@
 				AC4A43C1F500139D50F16F82 /* ChatView.swift in Sources */,
 				24A187E48E0C8405110CEAF2 /* ConfigService.swift in Sources */,
 				170ED20C4DC67554FCC5256F /* ContextBubbleController.swift in Sources */,
-				7CED8BB053D34D644374338A /* DesktopPetApp.swift in Sources */,
+				7CED8BB053D34D644374338A /* PixelkinApp.swift in Sources */,
 				B372C36C0FD761E5420CDBEE /* FlowLayout.swift in Sources */,
 				4F06EBFC5094F086E49ECF1B /* GifAdapter.swift in Sources */,
 				D2EB83EAE2582070D3E5B54A /* HitTestView.swift in Sources */,
@@ -535,24 +535,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DesktopPet/DesktopPet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Pixelkin/Pixelkin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DesktopPet;
+				INFOPLIST_KEY_CFBundleDisplayName = Pixelkin;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "DesktopPet 需要访问日历以便从聊天中创建系统日程。";
-				INFOPLIST_KEY_NSRemindersUsageDescription = "DesktopPet 需要访问提醒事项以便从聊天中创建待办提醒。";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Pixelkin 需要访问日历以便从聊天中创建系统日程。";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "Pixelkin 需要访问提醒事项以便从聊天中创建待办提醒。";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.desktoppet.app;
-				PRODUCT_NAME = DesktopPet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelkin.app;
+				PRODUCT_NAME = Pixelkin;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -561,24 +561,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DesktopPet/DesktopPet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Pixelkin/Pixelkin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DesktopPet;
+				INFOPLIST_KEY_CFBundleDisplayName = Pixelkin;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "DesktopPet 需要访问日历以便从聊天中创建系统日程。";
-				INFOPLIST_KEY_NSRemindersUsageDescription = "DesktopPet 需要访问提醒事项以便从聊天中创建待办提醒。";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Pixelkin 需要访问日历以便从聊天中创建系统日程。";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "Pixelkin 需要访问提醒事项以便从聊天中创建待办提醒。";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.desktoppet.app;
-				PRODUCT_NAME = DesktopPet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelkin.app;
+				PRODUCT_NAME = Pixelkin;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -642,7 +642,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14EB8EBC796B5E65F0DECBD4 /* Build configuration list for PBXNativeTarget "DesktopPet" */ = {
+		14EB8EBC796B5E65F0DECBD4 /* Build configuration list for PBXNativeTarget "Pixelkin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				710BE130989EE10277F1ABE2 /* Debug */,
@@ -651,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C1B640976EE12236A320E134 /* Build configuration list for PBXProject "DesktopPet" */ = {
+		C1B640976EE12236A320E134 /* Build configuration list for PBXProject "Pixelkin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2834CF665F0C246B7ACBAAFE /* Debug */,
