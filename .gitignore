@@ -21,7 +21,13 @@ Package.resolved
 # CocoaPods
 Pods/
 
-# Fastlane
+# Claude Code
+.claude/
+
+# Project docs / specs
+SPEC_NATIVE.md
+AGENTS.md
+llm_simplification_plan.md
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
