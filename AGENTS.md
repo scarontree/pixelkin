@@ -1,6 +1,6 @@
 # AGENTS.md — Pixelkin macOS Native
 
-> AI coding agent 专用项目规范。人类可读版本见 `SPEC_NATIVE.md`。
+> AI coding agent 与开发者共用项目规范。
 > 
 > **⚠️ 本文件以实际代码为准**，定期同步。如与代码冲突，以代码为真。
 

@@ -25,7 +25,6 @@ Pods/
 .claude/
 
 # Project docs / specs
-SPEC_NATIVE.md
 llm_simplification_plan.md
 fastlane/report.xml
 fastlane/Preview.html
