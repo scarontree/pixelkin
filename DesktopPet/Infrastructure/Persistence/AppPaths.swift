@@ -20,6 +20,9 @@ enum AppPaths {
     /// Persona 角色配置 (V2.0)
     static var personasDir: URL { appSupport.appendingPathComponent("personas") }
     
+    /// Persona 角色配置数据文件
+    static var personasFile: URL { appSupport.appendingPathComponent("personas.json") }
+    
     /// 聊天历史 (V2.0)
     static var chatDir: URL { appSupport.appendingPathComponent("chat") }
     

@@ -5,11 +5,12 @@ import AppKit
 @MainActor
 enum AdapterFactory {
     static func create(manifest: SkinManifest, skinDirectory: URL) -> AnimationAdapter {
-        switch manifest.type {
-        case "gif":    return GifAdapter(manifest: manifest, skinDirectory: skinDirectory)
-        case "svg":    return SvgAdapter(manifest: manifest, skinDirectory: skinDirectory)
-        // case "rive": return RiveAdapter(manifest: manifest, skinDirectory: skinDirectory)
-        default:       return SpriteAdapter(manifest: manifest, skinDirectory: skinDirectory)
+        switch manifest.skinType {
+        case .gif:     return GifAdapter(manifest: manifest, skinDirectory: skinDirectory)
+        case .svg:     return SvgAdapter(manifest: manifest, skinDirectory: skinDirectory)
+        // case .rive: return RiveAdapter(manifest: manifest, skinDirectory: skinDirectory)
+        case .sprite, .rive, .unknown:
+            return SpriteAdapter(manifest: manifest, skinDirectory: skinDirectory)
         }
     }
 }

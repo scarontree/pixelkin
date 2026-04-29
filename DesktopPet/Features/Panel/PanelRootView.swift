@@ -14,13 +14,13 @@ struct PanelRootView: View {
         } detail: {
             switch selectedSection {
             case .chat:
-                placeholderView("聊天工作区", subtitle: "V2.0")
+                ChatView(coordinator: coordinator)
             case .personas:
-                placeholderView("角色管理", subtitle: "V2.0")
+                PersonasView(coordinator: coordinator)
             case .skins:
                 SkinGalleryView(coordinator: coordinator)
             case .settings:
-                placeholderView("设置", subtitle: "V1.0")
+                SettingsView(coordinator: coordinator)
             }
         }
     }

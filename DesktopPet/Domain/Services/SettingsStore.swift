@@ -11,11 +11,36 @@ enum SettingsStore {
     struct StoredSettings: Codable {
         var selectedSkinID: String
         var isPetVisible: Bool
+        var globalTone: String
 
         static let `default` = StoredSettings(
             selectedSkinID: "",
-            isPetVisible: true
+            isPetVisible: true,
+            globalTone: "skin"
         )
+
+        init(
+            selectedSkinID: String,
+            isPetVisible: Bool,
+            globalTone: String
+        ) {
+            self.selectedSkinID = selectedSkinID
+            self.isPetVisible = isPetVisible
+            self.globalTone = globalTone
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case selectedSkinID
+            case isPetVisible
+            case globalTone
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            selectedSkinID = try container.decodeIfPresent(String.self, forKey: .selectedSkinID) ?? ""
+            isPetVisible = try container.decodeIfPresent(Bool.self, forKey: .isPetVisible) ?? true
+            globalTone = try container.decodeIfPresent(String.self, forKey: .globalTone) ?? "skin"
+        }
     }
 
     static func load() -> StoredSettings {

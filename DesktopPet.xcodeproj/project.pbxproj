@@ -11,69 +11,99 @@
 		0B7D3DD79F43ED696D2D113E /* AnimationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C034C799B92985A5EF2AA /* AnimationAdapter.swift */; };
 		170ED20C4DC67554FCC5256F /* ContextBubbleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B3BCE9E3FD17ED25DEECF /* ContextBubbleController.swift */; };
 		1AAD75091FBAEDFCF4FA94DE /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7759D394C536F33270DEB /* SettingsStore.swift */; };
+		24A187E48E0C8405110CEAF2 /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0941F617DE16129865FD4AF /* ConfigService.swift */; };
 		2659DA5401964925383B0374 /* WindowDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C85CA2EAE4456ED4DB1D2FC /* WindowDetector.swift */; };
 		2780946FBB9C678742023F26 /* PetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A4B3DCA2B5B62786C4E4A /* PetView.swift */; };
+		3D3FA1DC2E7FDC3DCF5B5037 /* PersonaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A610C617E6D50D93ED38F98 /* PersonaService.swift */; };
+		3DA193411034268EB3D47C86 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9836693CF72AC0C8AFF2383C /* TimerManager.swift */; };
 		3E79844440A0188D715D1368 /* PetPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C6AFB13616EC7DC224BC52 /* PetPanel.swift */; };
 		42DB854FC657ABB4117CE65C /* SkinManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9CE7237E4940F662CF665 /* SkinManifest.swift */; };
 		4654BE8AE10641679F0BC83C /* AppPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25897E5A9247015D66227C8B /* AppPaths.swift */; };
 		4D3FE86B03ADCCE9CAAD26ED /* SkinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4063FD69F9730972982DC6 /* SkinService.swift */; };
 		4F06EBFC5094F086E49ECF1B /* GifAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED1635B04A741688A681D1A /* GifAdapter.swift */; };
 		52033F5186485B4F778DC10F /* PetBehaviorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EFF28B5153CA7CDD034FB /* PetBehaviorState.swift */; };
+		56DCAD4550FB045BEBA199BA /* LLMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB931ED363103672EB54487 /* LLMService.swift */; };
 		570322A2517954A56B42774C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 903BB783F2E84D86D83E6753 /* Assets.xcassets */; };
+		5BCA58697B72053DA4E79F87 /* VariantConditionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44EDCE5C4AF01D1B0BF74B /* VariantConditionEditor.swift */; };
+		5F82E4267375ECC25D795151 /* LaunchAtLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85700B620D1D596A7DA379F /* LaunchAtLoginService.swift */; };
 		6D318CC138829C2D96057BB0 /* SpriteAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A041328E60E6126875CFC933 /* SpriteAdapter.swift */; };
 		6E8143A1D1996764DA17E3B7 /* BehaviorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE8EA5539B734B50722D72 /* BehaviorController.swift */; };
 		76B29D83D13F12355EC9CE65 /* SkinGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E01BE301D6AB77EEF8DCB /* SkinGalleryView.swift */; };
 		795487B738808782C84477B1 /* SkinCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F177E06D456F94C62B1A7686 /* SkinCard.swift */; };
 		79FC7B4FC500A9A051274837 /* AdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217DAD9B07C5B690658631A4 /* AdapterFactory.swift */; };
+		7ADA4870BABB1D2D86236713 /* BubbleRuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E386992FDCD956DDA374F9A /* BubbleRuleService.swift */; };
 		7BF59E8B61A1E7023C49A8E1 /* PetBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054188A5F46FAAAF908D8ECD /* PetBubbleView.swift */; };
 		7CED8BB053D34D644374338A /* DesktopPetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */; };
 		7D32A245FFF64BA4B89AA07B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */; };
 		7F92B62968C44569602F1A06 /* BubbleRuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */; };
+		7FA7AFD5FC30EDD1C1FEB0EF /* Persona.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A97C87206C391100A657E8D /* Persona.swift */; };
+		88BC186E3B9918C7405DB0E2 /* BubbleRuleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069EB047963DB5414814CC29 /* BubbleRuleEditorView.swift */; };
+		8A311AB9FA698F150E575C10 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CEC78984227F12EADEB9E0 /* SettingsView.swift */; };
 		8B2F6EB59AD81C3B4776BDC6 /* SvgAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FEECA69CB5BE6A7F69E75B /* SvgAdapter.swift */; };
 		98B8CC4E4382F403196A3A3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B222FA245BEDE6276A451320 /* AppDelegate.swift */; };
 		A8794D96A4F7589F43BE5724 /* PetRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7714AF1DCF58066DE714449 /* PetRenderView.swift */; };
+		AC4A43C1F500139D50F16F82 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE96D7495C353D9C293DE304 /* ChatView.swift */; };
 		ACA6A338699042134F4B426C /* PetWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF4FCB7F0EFE54971D3F066 /* PetWindowController.swift */; };
+		B372C36C0FD761E5420CDBEE /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6057F3DBAFC90D20A75C3F7 /* FlowLayout.swift */; };
 		B4F17F9AFB2509A27396BC3F /* PetPhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B83B968F7A8031EDBA37A0 /* PetPhysicsController.swift */; };
-		D0CBACD8D9F67CD804FBD854 /* ManifestEditorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED88041550FA998CD59363C7 /* ManifestEditorModal.swift */; };
+		BFB3462992BB9B1563012A7B /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D185AE17EE80D135BD535EF /* AppConfig.swift */; };
 		D2EB83EAE2582070D3E5B54A /* HitTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC19F2003E2AAF68B3FB1D9 /* HitTestView.swift */; };
+		DB36380F8C67957EB9A22C05 /* PersonasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41565728E5266C64EC127ED2 /* PersonasView.swift */; };
 		E01C286B9DFE36D5BA195C87 /* SkinEditorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F6AA4378A2D6E2620AE8C /* SkinEditorModal.swift */; };
 		E0DF1BD59C21AAA3001DC8C1 /* PanelRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A3C20357B095AF46F3C85 /* PanelRootView.swift */; };
+		E9A4E990C06CBE6D34107ABA /* SystemActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674DF71C9C925D7A34FE789D /* SystemActionService.swift */; };
+		F63EDA2DEB01CA23BD861302 /* SkinFilesEditorModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A21597A92F22BAF3015EEA /* SkinFilesEditorModal.swift */; };
 		FB07F48B837D108592A0BC01 /* SpriteRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A4DF900B8F46C330F4DBF1 /* SpriteRenderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		054188A5F46FAAAF908D8ECD /* PetBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetBubbleView.swift; sourceTree = "<group>"; };
+		069EB047963DB5414814CC29 /* BubbleRuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleRuleEditorView.swift; sourceTree = "<group>"; };
 		07F9CE7237E4940F662CF665 /* SkinManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinManifest.swift; sourceTree = "<group>"; };
 		0E6FE5CC81166A9C8A549B63 /* PetRuntimeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRuntimeState.swift; sourceTree = "<group>"; };
 		1661E10AC314B54F6929CA0B /* DesktopPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F44EDCE5C4AF01D1B0BF74B /* VariantConditionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantConditionEditor.swift; sourceTree = "<group>"; };
 		217DAD9B07C5B690658631A4 /* AdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterFactory.swift; sourceTree = "<group>"; };
 		25897E5A9247015D66227C8B /* AppPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPaths.swift; sourceTree = "<group>"; };
 		27A4DF900B8F46C330F4DBF1 /* SpriteRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteRenderView.swift; sourceTree = "<group>"; };
+		41565728E5266C64EC127ED2 /* PersonasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonasView.swift; sourceTree = "<group>"; };
 		45F7C87EE03C49D2C4F3D99B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		486E01BE301D6AB77EEF8DCB /* SkinGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinGalleryView.swift; sourceTree = "<group>"; };
 		4C1A4B3DCA2B5B62786C4E4A /* PetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetView.swift; sourceTree = "<group>"; };
+		4D185AE17EE80D135BD535EF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		64BE8EA5539B734B50722D72 /* BehaviorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorController.swift; sourceTree = "<group>"; };
+		674DF71C9C925D7A34FE789D /* SystemActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemActionService.swift; sourceTree = "<group>"; };
+		6A97C87206C391100A657E8D /* Persona.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persona.swift; sourceTree = "<group>"; };
 		6C85CA2EAE4456ED4DB1D2FC /* WindowDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDetector.swift; sourceTree = "<group>"; };
 		73FEECA69CB5BE6A7F69E75B /* SvgAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgAdapter.swift; sourceTree = "<group>"; };
+		7A610C617E6D50D93ED38F98 /* PersonaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonaService.swift; sourceTree = "<group>"; };
 		802F6AA4378A2D6E2620AE8C /* SkinEditorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinEditorModal.swift; sourceTree = "<group>"; };
 		86B7759D394C536F33270DEB /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		89B83B968F7A8031EDBA37A0 /* PetPhysicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPhysicsController.swift; sourceTree = "<group>"; };
 		8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleRuleSet.swift; sourceTree = "<group>"; };
 		8FF4FCB7F0EFE54971D3F066 /* PetWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWindowController.swift; sourceTree = "<group>"; };
 		903BB783F2E84D86D83E6753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		95CEC78984227F12EADEB9E0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9836693CF72AC0C8AFF2383C /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		9E386992FDCD956DDA374F9A /* BubbleRuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleRuleService.swift; sourceTree = "<group>"; };
 		9ED1635B04A741688A681D1A /* GifAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAdapter.swift; sourceTree = "<group>"; };
 		A041328E60E6126875CFC933 /* SpriteAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteAdapter.swift; sourceTree = "<group>"; };
 		A04EFF28B5153CA7CDD034FB /* PetBehaviorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetBehaviorState.swift; sourceTree = "<group>"; };
+		A6057F3DBAFC90D20A75C3F7 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		ABC19F2003E2AAF68B3FB1D9 /* HitTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitTestView.swift; sourceTree = "<group>"; };
+		ACB931ED363103672EB54487 /* LLMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMService.swift; sourceTree = "<group>"; };
+		AE96D7495C353D9C293DE304 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		B0941F617DE16129865FD4AF /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
 		B222FA245BEDE6276A451320 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B30C034C799B92985A5EF2AA /* AnimationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationAdapter.swift; sourceTree = "<group>"; };
+		B6A21597A92F22BAF3015EEA /* SkinFilesEditorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinFilesEditorModal.swift; sourceTree = "<group>"; };
 		C60A0EDE657437354EE5EF2C /* DesktopPetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopPetApp.swift; sourceTree = "<group>"; };
 		CA4063FD69F9730972982DC6 /* SkinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinService.swift; sourceTree = "<group>"; };
 		CB6B3BCE9E3FD17ED25DEECF /* ContextBubbleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextBubbleController.swift; sourceTree = "<group>"; };
 		D2C6AFB13616EC7DC224BC52 /* PetPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPanel.swift; sourceTree = "<group>"; };
 		D7714AF1DCF58066DE714449 /* PetRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRenderView.swift; sourceTree = "<group>"; };
+		D85700B620D1D596A7DA379F /* LaunchAtLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginService.swift; sourceTree = "<group>"; };
 		ED6A3C20357B095AF46F3C85 /* PanelRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelRootView.swift; sourceTree = "<group>"; };
-		ED88041550FA998CD59363C7 /* ManifestEditorModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManifestEditorModal.swift; sourceTree = "<group>"; };
 		F177E06D456F94C62B1A7686 /* SkinCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,8 +233,15 @@
 			isa = PBXGroup;
 			children = (
 				217DAD9B07C5B690658631A4 /* AdapterFactory.swift */,
+				9E386992FDCD956DDA374F9A /* BubbleRuleService.swift */,
+				B0941F617DE16129865FD4AF /* ConfigService.swift */,
+				D85700B620D1D596A7DA379F /* LaunchAtLoginService.swift */,
+				ACB931ED363103672EB54487 /* LLMService.swift */,
+				7A610C617E6D50D93ED38F98 /* PersonaService.swift */,
 				86B7759D394C536F33270DEB /* SettingsStore.swift */,
 				CA4063FD69F9730972982DC6 /* SkinService.swift */,
+				674DF71C9C925D7A34FE789D /* SystemActionService.swift */,
+				9836693CF72AC0C8AFF2383C /* TimerManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -267,7 +304,9 @@
 		E45993D13CFAAC523D300916 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4D185AE17EE80D135BD535EF /* AppConfig.swift */,
 				8FD7E650F621873865F076C6 /* BubbleRuleSet.swift */,
+				6A97C87206C391100A657E8D /* Persona.swift */,
 				A04EFF28B5153CA7CDD034FB /* PetBehaviorState.swift */,
 				07F9CE7237E4940F662CF665 /* SkinManifest.swift */,
 			);
@@ -285,6 +324,8 @@
 		FADC488232CF045199A312B7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A6057F3DBAFC90D20A75C3F7 /* FlowLayout.swift */,
+				1F44EDCE5C4AF01D1B0BF74B /* VariantConditionEditor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -292,10 +333,14 @@
 		FFC8D18D3064C5578F30325E /* Panel */ = {
 			isa = PBXGroup;
 			children = (
-				ED88041550FA998CD59363C7 /* ManifestEditorModal.swift */,
+				069EB047963DB5414814CC29 /* BubbleRuleEditorView.swift */,
+				AE96D7495C353D9C293DE304 /* ChatView.swift */,
 				ED6A3C20357B095AF46F3C85 /* PanelRootView.swift */,
+				41565728E5266C64EC127ED2 /* PersonasView.swift */,
+				95CEC78984227F12EADEB9E0 /* SettingsView.swift */,
 				F177E06D456F94C62B1A7686 /* SkinCard.swift */,
 				802F6AA4378A2D6E2620AE8C /* SkinEditorModal.swift */,
+				B6A21597A92F22BAF3015EEA /* SkinFilesEditorModal.swift */,
 				486E01BE301D6AB77EEF8DCB /* SkinGalleryView.swift */,
 			);
 			path = Panel;
@@ -373,17 +418,27 @@
 			files = (
 				79FC7B4FC500A9A051274837 /* AdapterFactory.swift in Sources */,
 				0B7D3DD79F43ED696D2D113E /* AnimationAdapter.swift in Sources */,
+				BFB3462992BB9B1563012A7B /* AppConfig.swift in Sources */,
 				7D32A245FFF64BA4B89AA07B /* AppCoordinator.swift in Sources */,
 				98B8CC4E4382F403196A3A3C /* AppDelegate.swift in Sources */,
 				4654BE8AE10641679F0BC83C /* AppPaths.swift in Sources */,
 				6E8143A1D1996764DA17E3B7 /* BehaviorController.swift in Sources */,
+				88BC186E3B9918C7405DB0E2 /* BubbleRuleEditorView.swift in Sources */,
+				7ADA4870BABB1D2D86236713 /* BubbleRuleService.swift in Sources */,
 				7F92B62968C44569602F1A06 /* BubbleRuleSet.swift in Sources */,
+				AC4A43C1F500139D50F16F82 /* ChatView.swift in Sources */,
+				24A187E48E0C8405110CEAF2 /* ConfigService.swift in Sources */,
 				170ED20C4DC67554FCC5256F /* ContextBubbleController.swift in Sources */,
 				7CED8BB053D34D644374338A /* DesktopPetApp.swift in Sources */,
+				B372C36C0FD761E5420CDBEE /* FlowLayout.swift in Sources */,
 				4F06EBFC5094F086E49ECF1B /* GifAdapter.swift in Sources */,
 				D2EB83EAE2582070D3E5B54A /* HitTestView.swift in Sources */,
-				D0CBACD8D9F67CD804FBD854 /* ManifestEditorModal.swift in Sources */,
+				56DCAD4550FB045BEBA199BA /* LLMService.swift in Sources */,
+				5F82E4267375ECC25D795151 /* LaunchAtLoginService.swift in Sources */,
 				E0DF1BD59C21AAA3001DC8C1 /* PanelRootView.swift in Sources */,
+				7FA7AFD5FC30EDD1C1FEB0EF /* Persona.swift in Sources */,
+				3D3FA1DC2E7FDC3DCF5B5037 /* PersonaService.swift in Sources */,
+				DB36380F8C67957EB9A22C05 /* PersonasView.swift in Sources */,
 				52033F5186485B4F778DC10F /* PetBehaviorState.swift in Sources */,
 				7BF59E8B61A1E7023C49A8E1 /* PetBubbleView.swift in Sources */,
 				3E79844440A0188D715D1368 /* PetPanel.swift in Sources */,
@@ -393,14 +448,19 @@
 				2780946FBB9C678742023F26 /* PetView.swift in Sources */,
 				ACA6A338699042134F4B426C /* PetWindowController.swift in Sources */,
 				1AAD75091FBAEDFCF4FA94DE /* SettingsStore.swift in Sources */,
+				8A311AB9FA698F150E575C10 /* SettingsView.swift in Sources */,
 				795487B738808782C84477B1 /* SkinCard.swift in Sources */,
 				E01C286B9DFE36D5BA195C87 /* SkinEditorModal.swift in Sources */,
+				F63EDA2DEB01CA23BD861302 /* SkinFilesEditorModal.swift in Sources */,
 				76B29D83D13F12355EC9CE65 /* SkinGalleryView.swift in Sources */,
 				42DB854FC657ABB4117CE65C /* SkinManifest.swift in Sources */,
 				4D3FE86B03ADCCE9CAAD26ED /* SkinService.swift in Sources */,
 				6D318CC138829C2D96057BB0 /* SpriteAdapter.swift in Sources */,
 				FB07F48B837D108592A0BC01 /* SpriteRenderView.swift in Sources */,
 				8B2F6EB59AD81C3B4776BDC6 /* SvgAdapter.swift in Sources */,
+				E9A4E990C06CBE6D34107ABA /* SystemActionService.swift in Sources */,
+				3DA193411034268EB3D47C86 /* TimerManager.swift in Sources */,
+				5BCA58697B72053DA4E79F87 /* VariantConditionEditor.swift in Sources */,
 				2659DA5401964925383B0374 /* WindowDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +544,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = DesktopPet;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "DesktopPet 需要访问日历以便从聊天中创建系统日程。";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DesktopPet 需要访问提醒事项以便从聊天中创建待办提醒。";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -508,6 +570,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = DesktopPet;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "DesktopPet 需要访问日历以便从聊天中创建系统日程。";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "DesktopPet 需要访问提醒事项以便从聊天中创建待办提醒。";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

@@ -17,8 +17,13 @@ final class PetPhysicsController {
     /// sit 状态下坐着的窗口 ID
     private(set) var sittingOnWindowID: CGWindowID?
     
-    /// 窗口边缘检测计数器（降频扫描）
-    private var edgeCheckCounter: Int = 0
+    /// cling 状态下趴着的窗口 ID
+    private(set) var clingingOnWindowID: CGWindowID?
+    
+    /// 窗口边缘检测计数器（降频扫描，各状态独立）
+    private var walkEdgeCheckCounter: Int = 0
+    private var sitCheckCounter: Int = 0
+    private var clingCheckCounter: Int = 0
     
     /// 宠物窗口编号（用于排除自身）
     var panelWindowNumber: Int = 0
@@ -31,6 +36,8 @@ final class PetPhysicsController {
     var onBehaviorStateChanged: ((PetBehaviorState) -> Void)?
     /// sit 状态变化
     var onSitStateChanged: ((Bool, CGFloat?) -> Void)?
+    /// cling 状态变化 (isCling, side, edgeX)
+    var onClingStateChanged: ((Bool, FacingDirection?, CGFloat?) -> Void)?
     /// 请求执行下落动画
     var onFallRequested: (() -> Void)?
     
@@ -46,6 +53,10 @@ final class PetPhysicsController {
     
     func setSittingOnWindow(_ windowID: CGWindowID?) {
         sittingOnWindowID = windowID
+    }
+    
+    func setClingingOnWindow(_ windowID: CGWindowID?) {
+        clingingOnWindowID = windowID
     }
     
     // MARK: - Walk 逻辑（每帧调用）
@@ -72,7 +83,7 @@ final class PetPhysicsController {
         case .windowTop(let windowID, _, _):
             // 在窗口顶部行走
             if let currentTop = WindowDetector.getWindowTop(windowID: windowID) {
-                // 窗口移动了 → 跟着调整 Y
+                // 窗口移动了 → 跟着调整
                 if abs(origin.y - currentTop) > 5 {
                     origin.y = currentTop
                 }
@@ -82,21 +93,35 @@ final class PetPhysicsController {
                     let petCenterX = origin.x + panelFrame.width / 2
                     
                     if petCenterX <= bounds.minX + edgeMargin {
-                        if Bool.random() {
+                        let roll = Double.random(in: 0...1)
+                        if roll < 0.4 {
                             onReachBoundary?(.right)
-                        } else {
+                        } else if roll < 0.7 {
+                            // 下落
                             walkingSurface = .ground
                             onBehaviorStateChanged?(.fall)
                             onFallRequested?()
                             return nil
+                        } else {
+                            // cling 到窗口左侧
+                            clingingOnWindowID = windowID
+                            onClingStateChanged?(true, .left, bounds.minX)
+                            return nil
                         }
                     } else if petCenterX >= bounds.maxX - edgeMargin {
-                        if Bool.random() {
+                        let roll = Double.random(in: 0...1)
+                        if roll < 0.4 {
                             onReachBoundary?(.left)
-                        } else {
+                        } else if roll < 0.7 {
+                            // 下落
                             walkingSurface = .ground
                             onBehaviorStateChanged?(.fall)
                             onFallRequested?()
+                            return nil
+                        } else {
+                            // cling 到窗口右侧
+                            clingingOnWindowID = windowID
+                            onClingStateChanged?(true, .right, bounds.maxX)
                             return nil
                         }
                     }
@@ -117,9 +142,9 @@ final class PetPhysicsController {
     
     /// walk 中检测脚下是否有窗口边缘（每 ~0.5s 执行一次）
     func checkForWindowEdge(panelFrame: NSRect) {
-        edgeCheckCounter += 1
-        guard edgeCheckCounter >= 30 else { return }
-        edgeCheckCounter = 0
+        walkEdgeCheckCounter += 1
+        guard walkEdgeCheckCounter >= 30 else { return }
+        walkEdgeCheckCounter = 0
         
         guard state.behaviorState == .walk else { return }
         
@@ -143,9 +168,9 @@ final class PetPhysicsController {
     func checkSitStability(panelFrame: NSRect) {
         guard state.behaviorState == .sit, let windowID = sittingOnWindowID else { return }
         
-        edgeCheckCounter += 1
-        guard edgeCheckCounter >= 15 else { return }
-        edgeCheckCounter = 0
+        sitCheckCounter += 1
+        guard sitCheckCounter >= 15 else { return }
+        sitCheckCounter = 0
         
         if let currentTop = WindowDetector.getWindowTop(windowID: windowID) {
             // 窗口移动了 → 通知跟随
@@ -160,12 +185,45 @@ final class PetPhysicsController {
         }
     }
     
+    // MARK: - Cling 稳定性检测
+    
+    /// 检测 cling 状态下趴着的窗口是否还在
+    func checkClingStability(panelFrame: NSRect) {
+        guard state.behaviorState == .cling, let windowID = clingingOnWindowID else { return }
+        
+        clingCheckCounter += 1
+        guard clingCheckCounter >= 15 else { return }
+        clingCheckCounter = 0
+        
+        if let bounds = WindowDetector.getWindowBounds(windowID: windowID) {
+            // 窗口移动了 → 跟随
+            let side = state.clingSide
+            if side == .left {
+                let targetX = bounds.minX - panelFrame.width
+                if abs(panelFrame.origin.x - targetX) > 5 {
+                    onClingStateChanged?(true, .left, bounds.minX)
+                }
+            } else if side == .right {
+                let targetX = bounds.maxX
+                if abs(panelFrame.origin.x - targetX) > 5 {
+                    onClingStateChanged?(true, .right, bounds.maxX)
+                }
+            }
+        } else {
+            // 窗口关闭了 → 下落
+            clingingOnWindowID = nil
+            onClingStateChanged?(false, nil, nil)
+            onFallRequested?()
+        }
+    }
+    
     // MARK: - 着陆检测
     
     /// 检测拖拽释放后的着陆点 — 返回着陆类型
     enum LandingResult {
         case ground
         case windowTop(windowID: CGWindowID, adjustedY: CGFloat, bounds: NSRect)
+        case windowSide(windowID: CGWindowID, side: FacingDirection, edgeX: CGFloat, bounds: NSRect)
         case midAir
     }
     
@@ -186,6 +244,16 @@ final class PetPhysicsController {
             }
         }
         
+        // 检测窗口侧边（cling 着陆）
+        if let result = WindowDetector.findWindowSideDuringFall(
+            x: petMidX,
+            y: panelFrame.origin.y,
+            petWidth: panelFrame.width,
+            excludeWindowNumber: panelWindowNumber
+        ) {
+            return .windowSide(windowID: result.windowID, side: result.side, edgeX: result.edgeX, bounds: result.bounds)
+        }
+        
         return .midAir
     }
     
@@ -202,5 +270,15 @@ final class PetPhysicsController {
             }
         }
         return nil
+    }
+    
+    /// 下落过程中检测是否经过窗口侧边（cling 用）
+    func detectFallCling(petMidX: CGFloat, currentY: CGFloat, petWidth: CGFloat) -> (side: FacingDirection, windowID: CGWindowID, edgeX: CGFloat, bounds: NSRect)? {
+        return WindowDetector.findWindowSideDuringFall(
+            x: petMidX,
+            y: currentY,
+            petWidth: petWidth,
+            excludeWindowNumber: panelWindowNumber
+        )
     }
 }

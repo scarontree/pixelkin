@@ -11,25 +11,14 @@ struct SkinEditorModal: View {
     
     @State private var skinName: String = ""
     @State private var diskID: String = ""
-    @State private var engine: String = "sprite"
+    @State private var engine: SkinManifest.SkinType = .sprite
     @State private var tag: String = ""
     @State private var groupLabel: String = ""
     
-    let engineOptions = ["sprite", "gif", "svg", "rive"]
+    private let engineOptions = SkinManifest.SkinType.allCases.filter { $0 != .unknown }
 
-    private func engineLabel(_ engine: String) -> String {
-        switch engine.lowercased() {
-        case "gif":
-            return "GIF"
-        case "svg":
-            return "SVG"
-        case "sprite":
-            return "Sprite"
-        case "rive":
-            return "Rive"
-        default:
-            return engine.capitalized
-        }
+    private func engineLabel(_ engine: SkinManifest.SkinType) -> String {
+        engine.displayName
     }
     
     var body: some View {
@@ -50,31 +39,42 @@ struct SkinEditorModal: View {
             
             Form {
                 Section {
-                    HStack {
-                        TextField("本地资源文件夹名", text: $diskID)
-                            .disabled(skinToEdit != nil) // 编辑模式不允许改 ID
+                    LabeledContent("本地资源文件夹名") {
                         Button(action: {
-                            let openPanel = NSOpenPanel()
-                            openPanel.canChooseFiles = false
-                            openPanel.canChooseDirectories = true
-                            openPanel.allowsMultipleSelection = false
-                            openPanel.prompt = "选为本地源"
-                            openPanel.message = "请选择任意包含你资源的文件夹"
-                            if openPanel.runModal() == .OK, let url = openPanel.url {
-                                selectedSourceURL = url
-                                diskID = url.lastPathComponent
+                            if skinToEdit != nil {
+                                if let url = skinToEdit?.directoryURL {
+                                    NSWorkspace.shared.open(url)
+                                }
+                            } else {
+                                let openPanel = NSOpenPanel()
+                                openPanel.canChooseFiles = false
+                                openPanel.canChooseDirectories = true
+                                openPanel.allowsMultipleSelection = false
+                                openPanel.prompt = "选为本地源"
+                                openPanel.message = "请选择任意包含你资源的文件夹"
+                                if openPanel.runModal() == .OK, let url = openPanel.url {
+                                    selectedSourceURL = url
+                                    diskID = url.lastPathComponent
+                                }
                             }
                         }) {
-                            Image(systemName: "folder.badge.magnifyingglass")
+                            Text(diskID.isEmpty ? "点击选择" : diskID)
+                                .foregroundStyle(diskID.isEmpty ? .secondary : .primary)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .contentShape(Rectangle())
                         }
-                        .help("点击在文件系统中选择")
+                        .buttonStyle(.plain)
+                        .onHover { hovering in
+                            if hovering {
+                                NSCursor.pointingHand.push()
+                            } else {
+                                NSCursor.pop()
+                            }
+                        }
                     }
                     TextField("界面展示名称", text: $skinName)
-                } footer: {
-                    Text("提示: 你也可以点击右侧图标直接从电脑里选择文件夹的名字。")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                 }
+                .padding(.bottom, 6)
                 
                 Section {
                     Picker("渲染引擎类型", selection: $engine) {
@@ -83,6 +83,7 @@ struct SkinEditorModal: View {
                         }
                     }
                 }
+                .padding(.bottom, 6)
                 
                 Section {
                     TextField("所属分组大类", text: $groupLabel)
@@ -91,6 +92,19 @@ struct SkinEditorModal: View {
             }
             .formStyle(.grouped)
             .frame(width: 380, height: 380)
+            
+            if skinToEdit == nil {
+                HStack(alignment: .top, spacing: 6) {
+                    Image(systemName: "info.circle.fill")
+                        .foregroundStyle(.blue)
+                    Text("导入成功后，请右键点击生成的卡片，进入「编辑属性」配置具体动画片段与角色语录。")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 12)
+            }
             
             Divider()
             
@@ -112,7 +126,7 @@ struct SkinEditorModal: View {
             if let skin = skinToEdit {
                 diskID = skin.id
                 skinName = skin.name
-                engine = skin.type
+                engine = skin.skinType
                 tag = skin.tag ?? ""
                 groupLabel = skin.group ?? ""
             }
@@ -129,7 +143,7 @@ struct SkinEditorModal: View {
                 from: selectedSourceURL ?? URL(fileURLWithPath: "/dev/null"),
                 skinID: diskID,
                 displayName: skinName,
-                engineType: engine,
+                engineType: engine.rawValue,
                 group: groupLabel.isEmpty ? nil : groupLabel,
                 tag: tag.isEmpty ? nil : tag
             )

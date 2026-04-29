@@ -28,6 +28,9 @@ final class PetWindowController {
         didSet { physics.onReachBoundary = onReachBoundary }
     }
     
+    /// 点击事件回调
+    var onClick: (() -> Void)?
+    
     /// 互动回调（鼠标靠近、拖拽等），用于唤醒 sleep
     var onInteraction: (() -> Void)?
     
@@ -36,12 +39,28 @@ final class PetWindowController {
         didSet { physics.onSitStateChanged = onSitStateChanged }
     }
     
+    /// 宠物 cling 状态变化回调
+    var onClingStateChanged: ((Bool, FacingDirection?, CGFloat?) -> Void)? {
+        didSet { physics.onClingStateChanged = onClingStateChanged }
+    }
+    
     /// 物理循环计时器
     private var physicsTimer: Timer?
     private var displayLink: CADisplayLink?
     
     /// 全局鼠标监听器（点击穿透用）
     private var mouseMonitor: Any?
+    /// 本地鼠标监听器（点击穿透用）
+    private var localMouseMonitor: Any?
+    
+    /// 点击穿透降频计数器（避免每帧 cacheDisplay）
+    private var clickThroughCounter: Int = 0
+    
+    /// hover 交互节流时间戳（避免鼠标路过不断重置 sleep 计时器）
+    private var lastHoverInteractionTime: Date = .distantPast
+    
+    /// 拖拽开始时窗口的位置
+    private var dragStartWindowOrigin: NSPoint = .zero
     
     private var windowSize: NSSize {
         NSSize(
@@ -90,7 +109,7 @@ final class PetWindowController {
         // 绑定拖拽回调
         hitView.onDragBegan = { [weak self] point in self?.beginDrag(at: point) }
         hitView.onDragMoved = { [weak self] point in self?.updateDrag(to: point) }
-        hitView.onDragEnded = { [weak self] in self?.endDrag() }
+        hitView.onDragEnded = { [weak self] isClick in self?.endDrag(isClick: isClick) }
         
         // 绑定右键菜单
         hitView.contextMenuProvider = { [weak self] in
@@ -107,6 +126,9 @@ final class PetWindowController {
     
     deinit {
         if let monitor = mouseMonitor {
+            NSEvent.removeMonitor(monitor)
+        }
+        if let monitor = localMouseMonitor {
             NSEvent.removeMonitor(monitor)
         }
     }
@@ -129,9 +151,12 @@ final class PetWindowController {
     func updateWindowSize() {
         let newSize = windowSize
         var frame = panel.frame
+        let deltaWidth = newSize.width - frame.size.width
         frame.size = newSize
+        frame.origin.x -= deltaWidth / 2
         panel.setFrame(frame, display: true)
         hostingView?.frame = NSRect(origin: .zero, size: newSize)
+        state.position = CGPoint(x: panel.frame.origin.x, y: panel.frame.origin.y)
     }
     
     // MARK: - 点击穿透
@@ -144,8 +169,8 @@ final class PetWindowController {
             }
         }
         
-        // 本地事件补充
-        NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { [weak self] event in
+        // 本地事件补充 — 保存返回值以便清理
+        localMouseMonitor = NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { [weak self] event in
             Task { @MainActor in
                 self?.updateClickThrough()
             }
@@ -163,9 +188,13 @@ final class PetWindowController {
         let isOverPet = isPetHitArea(mouseLocation)
         panel.ignoresMouseEvents = !isOverPet
         
-        // 鼠标靠近宠物时触发互动（唤醒 sleep 等）
+        // 鼠标靠近宠物时触发互动（唤醒 sleep 等）— 10s 节流避免频繁重置
         if isOverPet {
-            onInteraction?()
+            let now = Date()
+            if now.timeIntervalSince(lastHoverInteractionTime) > 10 {
+                lastHoverInteractionTime = now
+                onInteraction?()
+            }
         }
     }
     
@@ -205,6 +234,7 @@ final class PetWindowController {
     
     private func beginDrag(at screenPoint: NSPoint) {
         let windowOrigin = panel.frame.origin
+        dragStartWindowOrigin = windowOrigin
         dragOffset = CGPoint(
             x: screenPoint.x - windowOrigin.x,
             y: screenPoint.y - windowOrigin.y
@@ -223,35 +253,60 @@ final class PetWindowController {
         applyPosition(newOrigin)
     }
     
-    private func endDrag() {
+    private func endDrag(isClick: Bool) {
         state.isDragging = false
+        
+        if isClick {
+            // 如果是点击，恢复初始位置（消除微小拖动的偏移）
+            applyPosition(dragStartWindowOrigin)
+        }
         
         let screenFrame = NSScreen.main?.visibleFrame ?? .zero
         let landing = physics.detectLanding(panelFrame: panel.frame, screenFrame: screenFrame)
         
-        // 🔍 DEBUG: 拖拽释放诊断
-        print("[DEBUG endDrag] panel.frame=\(panel.frame) screenFrame=\(screenFrame)")
-        
         switch landing {
         case .ground:
-            print("[DEBUG endDrag] → landing = GROUND")
             physics.setWalkingSurface(.ground)
-            state.behaviorState = .idle
-            onBehaviorStateChanged?(.idle)
+            if isClick {
+                onClick?()
+            } else {
+                state.behaviorState = .idle
+                onBehaviorStateChanged?(.idle)
+            }
             
         case .windowTop(let windowID, let adjustedY, let bounds):
-            print("[DEBUG endDrag] → landing = WINDOW_TOP windowID=\(windowID) adjustedY=\(adjustedY) bounds=\(bounds)")
             physics.setWalkingSurface(.windowTop(
                 windowID: windowID,
                 minX: bounds.minX,
                 maxX: bounds.maxX
             ))
             applyPosition(NSPoint(x: panel.frame.origin.x, y: adjustedY))
-            state.behaviorState = .idle
-            onBehaviorStateChanged?(.idle)
+            if isClick {
+                onClick?()
+            } else {
+                state.behaviorState = .idle
+                onBehaviorStateChanged?(.idle)
+            }
+            
+        case .windowSide(let windowID, let side, let edgeX, _):
+            // 拖拽释放在窗口侧边 → cling (如果不是点击)
+            if isClick {
+                // 如果是点击且在窗口边缘，触发点击
+                physics.setClingingOnWindow(windowID)
+                state.clingSide = side
+                onClick?()
+            } else {
+                let petX = side == .left ? edgeX - panel.frame.width : edgeX
+                applyPosition(NSPoint(x: petX, y: panel.frame.origin.y))
+                physics.setClingingOnWindow(windowID)
+                state.clingSide = side
+                onClingStateChanged?(true, side, edgeX)
+            }
             
         case .midAir:
-            print("[DEBUG endDrag] → landing = MID_AIR, triggering fall")
+            if isClick {
+                onClick?() // 点击依然可以响应，但会继续下落
+            }
             state.behaviorState = .fall
             onBehaviorStateChanged?(.fall)
             triggerFall()
@@ -273,17 +328,14 @@ final class PetWindowController {
         var currentY = panel.frame.origin.y
         var velocity: CGFloat = 0
         
-        print("[DEBUG fall] START groundY=\(groundY) currentY=\(currentY)")
-        
         while currentY > groundY {
             velocity += 0.3  // 重力加速
             currentY -= velocity
             
             let petMidX = panel.frame.origin.x + panel.frame.width / 2
             
-            // 检查是否碰到窗口顶部
+            // 检查是否碰到可见窗口顶部（被遮挡的后台窗口会被跳过）
             if let landing = physics.detectFallLanding(petMidX: petMidX, currentY: currentY) {
-                print("[DEBUG fall] LANDED ON WINDOW at y=\(currentY) → windowTop=\(landing.windowTop) windowID=\(landing.windowID)")
                 applyPosition(NSPoint(x: panel.frame.origin.x, y: landing.windowTop))
                 physics.setWalkingSurface(.windowTop(
                     windowID: landing.windowID,
@@ -295,11 +347,28 @@ final class PetWindowController {
                 return
             }
             
+            // 检查是否经过窗口侧边（40% 概率 cling）
+            if Double.random(in: 0...1) < 0.4 {
+                if let cling = physics.detectFallCling(
+                    petMidX: petMidX,
+                    currentY: currentY,
+                    petWidth: panel.frame.width
+                ) {
+                    let petX = cling.side == .left
+                        ? cling.edgeX - panel.frame.width
+                        : cling.edgeX
+                    applyPosition(NSPoint(x: petX, y: currentY))
+                    physics.setClingingOnWindow(cling.windowID)
+                    state.clingSide = cling.side
+                    onClingStateChanged?(true, cling.side, cling.edgeX)
+                    return
+                }
+            }
+            
             applyPosition(NSPoint(x: panel.frame.origin.x, y: max(currentY, groundY)))
             try? await Task.sleep(for: .milliseconds(16))
         }
         
-        print("[DEBUG fall] REACHED GROUND at y=\(groundY)")
         // 落到地面
         physics.setWalkingSurface(.ground)
         state.behaviorState = .idle
@@ -326,17 +395,37 @@ final class PetWindowController {
     }
     
     @objc private func physicsTick() {
-        // 每帧更新点击穿透
-        updateClickThrough()
+        // 降频点击穿透检测（每 4 帧一次，避免每帧 cacheDisplay）
+        clickThroughCounter += 1
+        if clickThroughCounter >= 4 {
+            clickThroughCounter = 0
+            updateClickThrough()
+        }
         
         // sit 稳定性检测
         if state.behaviorState == .sit {
             physics.checkSitStability(panelFrame: panel.frame)
-            // sit 回调可能更新了位置
             if let windowID = physics.sittingOnWindowID,
                let top = WindowDetector.getWindowTop(windowID: windowID) {
                 if abs(panel.frame.origin.y - top) > 5 {
                     applyPosition(NSPoint(x: panel.frame.origin.x, y: top))
+                }
+            }
+            return
+        }
+        
+        // cling 稳定性检测
+        if state.behaviorState == .cling {
+            physics.checkClingStability(panelFrame: panel.frame)
+            // 窗口移动时跟随
+            if let windowID = physics.clingingOnWindowID,
+               let bounds = WindowDetector.getWindowBounds(windowID: windowID) {
+                let side = state.clingSide
+                let targetX = side == .left
+                    ? bounds.minX - panel.frame.width
+                    : bounds.maxX
+                if abs(panel.frame.origin.x - targetX) > 3 {
+                    applyPosition(NSPoint(x: targetX, y: panel.frame.origin.y))
                 }
             }
             return
@@ -351,32 +440,42 @@ final class PetWindowController {
         }
     }
     
-    // MARK: - 位置工具
+    // MARK: - Cling 结束动作
     
-    private func applyPosition(_ origin: NSPoint) {
-        panel.setFrameOrigin(origin)
-        let actual = panel.frame.origin
-        if abs(actual.x - origin.x) > 1 || abs(actual.y - origin.y) > 1 {
-            print("[DEBUG applyPosition] ⚠️ MISMATCH! requested=\(origin) actual=\(actual)")
+    /// cling 结束后爬到窗口顶部
+    func climbToClungWindowTop() {
+        guard let windowID = physics.clingingOnWindowID,
+              let bounds = WindowDetector.getWindowBounds(windowID: windowID) else {
+            // 窗口已消失，直接下落
+            triggerFall()
+            return
         }
-        state.position = CGPoint(x: actual.x, y: actual.y)
+        
+        let topY = bounds.maxY
+        let centerX = bounds.midX - panel.frame.width / 2
+        applyPosition(NSPoint(x: centerX, y: topY))
+        physics.setWalkingSurface(.windowTop(
+            windowID: windowID,
+            minX: bounds.minX,
+            maxX: bounds.maxX
+        ))
+        physics.setClingingOnWindow(nil)
+        state.clingSide = nil
     }
     
-    /// 临时调试：自动测试下落（3 秒后触发）
-    func debugAutoFallTest() {
-        Task {
-            try? await Task.sleep(for: .seconds(3))
-            let screenFrame = NSScreen.main?.visibleFrame ?? .zero
-            let testY = screenFrame.maxY - 50 // 接近屏幕顶部
-            let testOrigin = NSPoint(x: screenFrame.midX - panel.frame.width/2, y: testY)
-            print("[DEBUG autoTest] Moving pet to \(testOrigin)")
-            applyPosition(testOrigin)
-            print("[DEBUG autoTest] Actual position after move: \(panel.frame.origin)")
-            
-            try? await Task.sleep(for: .seconds(1))
-            print("[DEBUG autoTest] Triggering fall from \(panel.frame.origin)")
-            triggerFall()
-        }
+    /// cling 结束后松手下落
+    func performClingFall() {
+        physics.setClingingOnWindow(nil)
+        state.clingSide = nil
+        triggerFall()
+    }
+    
+    // MARK: - 位置工具
+    
+    /// 将窗口移动到指定位置并同步状态
+    private func applyPosition(_ origin: NSPoint) {
+        panel.setFrameOrigin(origin)
+        state.position = CGPoint(x: origin.x, y: origin.y)
     }
 
     private static func resolvedInitialOrigin(

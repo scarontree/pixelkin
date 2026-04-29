@@ -8,7 +8,31 @@ struct SkinManifest: Codable, Identifiable, Equatable {
     
     var id: String    // 皮肤唯一标识（= 文件夹名）
     var name: String  // 显示名称
-    let type: String  // "sprite" | "gif" | "svg" | "rive"
+    var type: String  // "原始字符串，保留 JSON 兼容，业务逻辑用 skinType
+    
+    /// 类型安全的引擎类型枚举
+    enum SkinType: String, Codable, CaseIterable {
+        case sprite
+        case gif
+        case svg
+        case rive
+        case unknown
+        
+        var displayName: String {
+            switch self {
+            case .sprite: return "Sprite"
+            case .gif: return "GIF"
+            case .svg: return "SVG"
+            case .rive: return "Rive"
+            case .unknown: return "Unknown"
+            }
+        }
+    }
+    
+    /// 类型安全的引擎类型（从原始字符串解析）
+    var skinType: SkinType {
+        SkinType(rawValue: type.lowercased()) ?? .unknown
+    }
     
     // MARK: - 渲染尺寸（sprite / gif / svg 通用）
     
@@ -133,10 +157,13 @@ struct SkinManifest: Codable, Identifiable, Equatable {
         var weight: Int?
         var conditions: [String]?
         var priority: Int?
+        var duration: Double? // 播放时长（覆盖默认调度）
+        var cooldown: Double? // 冷却时间（秒）
     }
 
     struct AnimationContext: Equatable {
         var activeConditions: Set<String> = []
+        var variantLastPlayedAt: [String: Date] = [:]
     }
 
     func resolveVariant(
@@ -149,8 +176,19 @@ struct SkinManifest: Codable, Identifiable, Equatable {
 
         let matched = config.variants
             .filter { variant in
+                // 条件检查
                 let required = Set(variant.conditions ?? [])
-                return required.isSubset(of: context.activeConditions)
+                guard required.isSubset(of: context.activeConditions) else { return false }
+                
+                // 冷却检查
+                if let cooldown = variant.cooldown, cooldown > 0 {
+                    if let lastPlayed = context.variantLastPlayedAt[variant.id] {
+                        if Date().timeIntervalSince(lastPlayed) < cooldown {
+                            return false
+                        }
+                    }
+                }
+                return true
             }
             .sorted { lhs, rhs in
                 (lhs.priority ?? 0) > (rhs.priority ?? 0)

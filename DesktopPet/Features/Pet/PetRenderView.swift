@@ -45,9 +45,14 @@ struct PetRenderView: View {
     let state: PetRuntimeState
     let adapterProvider: () -> AnimationAdapter?
     
+    @State private var trackingSkinID: String = ""
+    
     var body: some View {
-        let _ = state.currentSkinID // 隐式追踪变量以触发 SwiftUI 重绘
         AnimationContainerView(state: state, adapterProvider: adapterProvider)
             .animation(.easeInOut(duration: 0.2), value: state.behaviorState)
+            .onChange(of: state.currentSkinID) { _, newValue in
+                // 显式追踪 skinID 变化以触发 AnimationContainerView 更新
+                trackingSkinID = newValue
+            }
     }
 }

@@ -9,12 +9,14 @@ final class HitTestView<Content: View>: NSHostingView<Content> {
     /// 拖拽回调
     var onDragBegan: ((NSPoint) -> Void)?
     var onDragMoved: ((NSPoint) -> Void)?
-    var onDragEnded: (() -> Void)?
+    var onDragEnded: ((Bool) -> Void)?
     
     /// 右键菜单构建
     var contextMenuProvider: (() -> NSMenu)?
     
     private var isDragging = false
+    private var mouseDownScreenPoint: NSPoint?
+    private var mouseDownTime: TimeInterval = 0
     
     /// Alpha 阈值：像素 alpha 大于此值时视为"可点击"（0-255）
     private let alphaThreshold: UInt8 = 20
@@ -68,6 +70,8 @@ final class HitTestView<Content: View>: NSHostingView<Content> {
     override func mouseDown(with event: NSEvent) {
         isDragging = true
         let screenPoint = NSEvent.mouseLocation
+        mouseDownScreenPoint = screenPoint
+        mouseDownTime = event.timestamp
         onDragBegan?(screenPoint)
     }
     
@@ -80,7 +84,22 @@ final class HitTestView<Content: View>: NSHostingView<Content> {
     override func mouseUp(with event: NSEvent) {
         guard isDragging else { return }
         isDragging = false
-        onDragEnded?()
+        
+        let screenPoint = NSEvent.mouseLocation
+        var isClick = false
+        if let startPoint = mouseDownScreenPoint {
+            let dx = screenPoint.x - startPoint.x
+            let dy = screenPoint.y - startPoint.y
+            let distanceSq = dx*dx + dy*dy
+            let timeDiff = event.timestamp - mouseDownTime
+            
+            // 移动距离很小且时间很短，视为点击
+            if distanceSq < 25 && timeDiff < 0.3 {
+                isClick = true
+            }
+        }
+        
+        onDragEnded?(isClick)
     }
     
     override func rightMouseDown(with event: NSEvent) {

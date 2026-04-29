@@ -32,15 +32,22 @@ final class GifAdapter: AnimationAdapter {
         self.skinDirectory = skinDirectory
     }
     
-    func play(_ state: PetBehaviorState) {
+    deinit {
+        // 保险：CADisplayLink/Timer 强持有 target，确保它们不会阻止释放
+        displayLink?.invalidate()
+        frameTimer?.invalidate()
+    }
+    
+    @discardableResult
+    func play(_ state: PetBehaviorState, context: SkinManifest.AnimationContext) -> SkinManifest.AnimationVariant? {
         // 尝试解析该状态的动画变体，找不到则 fallback 到 idle
         let variant: SkinManifest.AnimationVariant
-        if let v = manifest.resolveVariant(for: state.rawValue) {
+        if let v = manifest.resolveVariant(for: state.rawValue, context: context) {
             variant = v
-        } else if let v = manifest.resolveVariant(for: PetBehaviorState.idle.rawValue) {
+        } else if let v = manifest.resolveVariant(for: PetBehaviorState.idle.rawValue, context: context) {
             variant = v
         } else {
-            return
+            return nil
         }
         
         currentState = state
@@ -50,6 +57,8 @@ final class GifAdapter: AnimationAdapter {
         loadGif(fileName: variant.file)
         updateFrame()
         startTimer()
+        
+        return variant
     }
     
     func stop() {

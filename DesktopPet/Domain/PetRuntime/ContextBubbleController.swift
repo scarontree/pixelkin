@@ -40,6 +40,7 @@ final class ContextBubbleController {
     
     /// NSWorkspace 通知观察者
     private var workspaceObserver: NSObjectProtocol?
+    private var globalTone: String = "skin"
     
     init(state: PetRuntimeState) {
         self.state = state
@@ -87,6 +88,10 @@ final class ContextBubbleController {
     /// 清除当前语录本
     func clearPhraseBook() {
         phraseBook = nil
+    }
+
+    func applyGlobalTone(_ tone: String) {
+        globalTone = tone
     }
     
     /// 重新加载规则文件
@@ -181,13 +186,28 @@ final class ContextBubbleController {
             return rule
         }
         
-        // 2. appName 模糊匹配
+        // 2. appName 模糊匹配 (兼容 appGroups 里填写的应用名和包名)
         if let name = appName {
-            if let rule = ruleSet.rules.first(where: {
-                guard let pattern = $0.appNameContains, !pattern.isEmpty else { return false }
-                return name.localizedCaseInsensitiveContains(pattern)
-            }) {
-                return rule
+            for rule in ruleSet.rules {
+                var keywords: [String] = []
+                
+                // 收集这套规则下的所有关键词
+                if let groupName = rule.appGroup, let groupIDs = ruleSet.appGroups[groupName] {
+                    keywords.append(contentsOf: groupIDs)
+                }
+                if let directIDs = rule.appBundleIDs {
+                    keywords.append(contentsOf: directIDs)
+                }
+                if let pattern = rule.appNameContains, !pattern.isEmpty {
+                    keywords.append(pattern)
+                }
+                
+                // 只要当前应用的本地化名称包含了任意一个关键词（不区分大小写），就算匹配成功
+                for keyword in keywords {
+                    if name.localizedCaseInsensitiveContains(keyword) {
+                        return rule
+                    }
+                }
             }
         }
         
@@ -278,9 +298,17 @@ final class ContextBubbleController {
     }
     
     private func triggerBubble(ruleID: String, duration: TimeInterval?) {
-        // 语录查找链：皮肤 PhraseBook → 规则 fallbackPhrases
+        // 根据 globalTone 决定语录池
+        var targetBook: PhraseBook?
+        switch globalTone {
+        case "tsundere": targetBook = PhraseBook.exampleTsundere
+        case "gentle": targetBook = PhraseBook.exampleGentle
+        case "default": targetBook = PhraseBook(phrases: ruleSet.fallbackPhrases)
+        default: targetBook = phraseBook // "skin" 默认用皮肤配置
+        }
+        
         let phrases: [String]? =
-            phraseBook?.phrasesForRule(ruleID) ??
+            targetBook?.phrasesForRule(ruleID) ??
             ruleSet.fallbackPhrases[ruleID]
         
         guard let pool = phrases, let phrase = pool.randomElement() else { return }
@@ -293,28 +321,15 @@ final class ContextBubbleController {
         state.isBubbleVisible = false
         state.bubbleText = ""
     }
-    
+
     // MARK: - 规则加载
     
     private static func loadOrCreateRuleSet() -> BubbleRuleSet {
-        let fileURL = AppPaths.bubbleRulesFile
-        
-        if FileManager.default.fileExists(atPath: fileURL.path) {
-            if let data = try? Data(contentsOf: fileURL),
-               let ruleSet = try? JSONDecoder().decode(BubbleRuleSet.self, from: data) {
-                return ruleSet
-            }
-            print("[ContextBubbleController] 规则文件解码失败，使用默认规则")
+        let ruleSet = BubbleRuleService.load()
+        // 如果文件不存在，写入默认规则供用户编辑
+        if !FileManager.default.fileExists(atPath: AppPaths.bubbleRulesFile.path) {
+            BubbleRuleService.save(ruleSet)
         }
-        
-        let defaultRuleSet = BubbleRuleSet.builtInDefault
-        AppPaths.ensureDirectoryExists(AppPaths.appSupport)
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        if let data = try? encoder.encode(defaultRuleSet) {
-            try? data.write(to: fileURL, options: .atomic)
-        }
-        
-        return defaultRuleSet
+        return ruleSet
     }
 }

@@ -192,6 +192,9 @@ final class SkinService {
               (try? JSONSerialization.jsonObject(with: data, options: [])) != nil else {
             return "JSON 格式校验失败！请检查是否有语法错误（多余逗号或括号不匹配）。"
         }
+        guard (try? JSONDecoder().decode(SkinManifest.self, from: data)) != nil else {
+            return "manifest.json 与当前模型不兼容，请检查必填字段和字段类型。"
+        }
 
         do {
             try text.write(to: fileURL, atomically: true, encoding: .utf8)
@@ -201,9 +204,74 @@ final class SkinService {
         }
     }
 
+    static func phraseBookText(for skin: SkinManifest) -> String? {
+        let fileURL = phrasesURL(for: skin)
+        if !FileManager.default.fileExists(atPath: fileURL.path) {
+            createDefaultPhraseBookIfNeeded(for: skin)
+        }
+        return try? String(contentsOf: fileURL)
+    }
+
+    static func loadPhraseBook(for skin: SkinManifest) -> PhraseBook {
+        let fileURL = phrasesURL(for: skin)
+        if !FileManager.default.fileExists(atPath: fileURL.path) {
+            createDefaultPhraseBookIfNeeded(for: skin)
+        }
+
+        guard let data = try? Data(contentsOf: fileURL),
+              let phraseBook = try? JSONDecoder().decode(PhraseBook.self, from: data) else {
+            return defaultPhraseBook()
+        }
+
+        return phraseBook
+    }
+
+    static func savePhraseBookText(_ text: String, for skin: SkinManifest) -> String? {
+        let fileURL = phrasesURL(for: skin)
+        guard let data = text.data(using: .utf8),
+              (try? JSONSerialization.jsonObject(with: data, options: [])) != nil else {
+            return "JSON 格式校验失败！请检查是否有语法错误（多余逗号或括号不匹配）。"
+        }
+        guard (try? JSONDecoder().decode(PhraseBook.self, from: data)) != nil else {
+            return "phrases.json 结构无效，必须是 { \"phrases\": { ... } } 形式。"
+        }
+
+        do {
+            try data.write(to: fileURL, options: .atomic)
+            return nil
+        } catch {
+            return "保存失败: \(error.localizedDescription)"
+        }
+    }
+
+    static func savePhraseBook(_ phraseBook: PhraseBook, for skin: SkinManifest) -> String? {
+        guard let data = try? JSONEncoder.prettyPrinting.encode(phraseBook),
+              let text = String(data: data, encoding: .utf8) else {
+            return "当前语录内容无法保存。"
+        }
+        return savePhraseBookText(text, for: skin)
+    }
+
+    static func openSkinsDirectory() {
+        AppPaths.ensureDirectoryExists(AppPaths.skinsDir)
+        NSWorkspace.shared.open(AppPaths.skinsDir)
+    }
+
     static func deleteImportedSkin(_ skin: SkinManifest) {
         guard let dir = skin.directoryURL else { return }
         try? FileManager.default.removeItem(at: dir)
+    }
+    
+    // MARK: - Bubble Rule Set Management (已迁移到 BubbleRuleService)
+    
+    @available(*, deprecated, message: "使用 BubbleRuleService.load() 替代")
+    static func loadBubbleRuleSet() -> BubbleRuleSet {
+        BubbleRuleService.load()
+    }
+    
+    @available(*, deprecated, message: "使用 BubbleRuleService.save() 替代")
+    static func saveBubbleRuleSet(_ ruleSet: BubbleRuleSet) -> String? {
+        BubbleRuleService.save(ruleSet)
     }
     
     /// 生成默认 manifest
@@ -260,14 +328,38 @@ final class SkinService {
         let projectPath = AppPaths.skinsDir.appendingPathComponent(skin.id).appendingPathComponent("manifest.json")
         return FileManager.default.fileExists(atPath: projectPath.path) ? projectPath : nil
     }
+
+    private static func phrasesURL(for skin: SkinManifest) -> URL {
+        if let dir = skin.directoryURL {
+            return dir.appendingPathComponent("phrases.json")
+        }
+        return AppPaths.skinsDir.appendingPathComponent(skin.id).appendingPathComponent("phrases.json")
+    }
+
+    private static func createDefaultPhraseBookIfNeeded(for skin: SkinManifest) {
+        let fileURL = phrasesURL(for: skin)
+        let directory = fileURL.deletingLastPathComponent()
+        AppPaths.ensureDirectoryExists(directory)
+        guard !FileManager.default.fileExists(atPath: fileURL.path) else { return }
+        let template = defaultPhraseBook()
+        guard let data = try? JSONEncoder.prettyPrinting.encode(template) else { return }
+        try? data.write(to: fileURL, options: .atomic)
+    }
+
+    private static func defaultPhraseBook() -> PhraseBook {
+        PhraseBook(phrases: [
+            "default": ["今天也辛苦啦~"]
+        ])
+    }
 }
 
 // MARK: - JSONEncoder extension
 
 private extension JSONEncoder {
-    static var prettyPrinting: JSONEncoder {
+    /// 共享 encoder 实例 — 所有调用在 @MainActor 上，线程安全
+    static let prettyPrinting: JSONEncoder = {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         return encoder
-    }
+    }()
 }

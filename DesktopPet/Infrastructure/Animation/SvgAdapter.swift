@@ -22,19 +22,22 @@ final class SvgAdapter: AnimationAdapter {
         self.skinDirectory = skinDirectory
     }
     
-    func play(_ state: PetBehaviorState) {
+    @discardableResult
+    func play(_ state: PetBehaviorState, context: SkinManifest.AnimationContext) -> SkinManifest.AnimationVariant? {
         // 尝试解析该状态的动画变体，找不到则 fallback 到 idle
         let variant: SkinManifest.AnimationVariant
-        if let v = manifest.resolveVariant(for: state.rawValue) {
+        if let v = manifest.resolveVariant(for: state.rawValue, context: context) {
             variant = v
-        } else if let v = manifest.resolveVariant(for: PetBehaviorState.idle.rawValue) {
+        } else if let v = manifest.resolveVariant(for: PetBehaviorState.idle.rawValue, context: context) {
             variant = v
         } else {
-            return
+            return nil
         }
         
         let url = skinDirectory.appendingPathComponent(variant.file)
         renderView?.loadFile(url)
+        
+        return variant
     }
     
     func stop() {}

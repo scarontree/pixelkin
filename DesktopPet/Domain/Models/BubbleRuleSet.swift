@@ -20,6 +20,9 @@ import Foundation
 /// - 应用规则：全局冷却（globalCooldown）+ 单规则冷却（BubbleRule.cooldown）
 /// - 时间/日期规则：全局冷却 + 每条规则每天最多触发一次
 struct BubbleRuleSet: Codable {
+
+    // MARK: - Stored Properties
+
     /// 应用分组：组名 → bundle ID 列表
     var appGroups: [String: [String]]
     
@@ -41,78 +44,150 @@ struct BubbleRuleSet: Codable {
     /// 气泡默认显示时长（秒）
     var defaultDuration: TimeInterval
     
+    // MARK: - 分组显示名注册表（单一真相源）
+    
+    /// 所有已知分组 key → 中文显示名。UI 层统一查此表，NEVER 自建映射。
+    /// 用户自定义的分组如果不在此表中，会直接显示 key。
+    static let groupDisplayNames: [String: String] = [
+        // 应用分组
+        "default": "默认",
+        "browsers": "浏览器",
+        "code_editors": "代码编辑器",
+        "terminals": "终端",
+        "social_cn": "国内社交",
+        "social_intl": "国际社交",
+        "music": "音乐",
+        "video": "视频",
+        "creative": "创作设计",
+        "productivity": "效率工具",
+        "office": "办公文档",
+        "communication": "通讯会议",
+        "system": "系统工具",
+        "reading": "阅读",
+        "games": "游戏",
+        "ai": "AI 工具",
+        "finance": "财经",
+        "news": "新闻",
+        // 时间段
+        "morning": "早晨",
+        "lunch": "午餐",
+        "afternoon": "下午",
+        "evening": "晚上",
+        "late_night": "深夜",
+        // 星期
+        "friday": "周五",
+        "weekend": "周末",
+        // 节日
+        "new_year": "新年",
+        "valentine": "情人节",
+        "april_fools": "愚人节",
+        "labor_day": "劳动节",
+        "childrens_day": "儿童节",
+        "halloween": "万圣节",
+        "double_11": "双十一",
+        "christmas": "圣诞节",
+    ]
+    
+    /// 获取分组的显示名（查表 → 兜底返回 key）
+    static func displayName(for key: String) -> String {
+        groupDisplayNames[key] ?? key
+    }
+    
+    /// 排序用的优先级表（越靠前优先级越高）
+    static let groupSortOrder: [String] = [
+        "default", "browsers", "code_editors", "terminals", "social_cn", "social_intl",
+        "music", "video", "creative", "productivity", "office", "communication",
+        "system", "reading", "games", "ai", "finance", "news",
+        "morning", "lunch", "afternoon", "evening", "late_night",
+        "friday", "weekend",
+        "new_year", "valentine", "april_fools", "labor_day", "childrens_day",
+        "halloween", "double_11", "christmas"
+    ]
+    
+    /// 排序 key：已知 key 按预定义顺序排，自定义 key 排最后（字母序）
+    static func sortIndex(for key: String) -> String {
+        if let index = groupSortOrder.firstIndex(of: key) {
+            return String(format: "%03d-%@", index, key)
+        }
+        return "999-\(key)"
+    }
+    
+    /// 当前规则集中所有分组 key（合并 appGroups + timeRules + dateRules + fallbackPhrases）
+    /// 用户新增的分组会自动出现
+    var allCategoryKeys: [String] {
+        var keys = Set(appGroups.keys)
+        keys.formUnion(fallbackPhrases.keys)
+        if let timeRules { keys.formUnion(timeRules.map(\.id)) }
+        if let dateRules { keys.formUnion(dateRules.map(\.id)) }
+        for rule in rules { keys.insert(rule.id) }
+        return keys.sorted { Self.sortIndex(for: $0) < Self.sortIndex(for: $1) }
+    }
+    
+    /// 当前规则集中的应用分组（key, displayName），用于 UI 预设按钮
+    var appGroupPresets: [(key: String, label: String)] {
+        appGroups.keys.sorted { Self.sortIndex(for: $0) < Self.sortIndex(for: $1) }
+            .map { ($0, Self.displayName(for: $0)) }
+    }
+    
+    // MARK: - Built-in Default
+
     /// 内置默认规则
     static let builtInDefault: BubbleRuleSet = {
         // ── 应用分组（bundle ID 映射）──────────────────────────
         let groups: [String: [String]] = [
             "browsers": [
-                "com.apple.Safari", "com.google.Chrome", "org.mozilla.firefox",
-                "company.thebrowser.Browser", "com.microsoft.edgemac", "com.operasoftware.Opera",
-                "com.kagi.kagimac"
+                "Safari", "Chrome", "Firefox", "Edge", "Opera", "Arc", "Kagi"
             ],
             "code_editors": [
-                "com.apple.dt.Xcode", "com.microsoft.VSCode", "com.todesktop.230313mzl4w4u92",
-                "com.sublimetext.4", "dev.zed.Zed", "com.jetbrains.intellij", "com.jetbrains.WebStorm",
-                "com.jetbrains.pycharm", "com.google.android.studio"
+                "Xcode", "VSCode", "Visual Studio Code", "Cursor",
+                "Sublime Text", "Zed", "IntelliJ", "WebStorm", "PyCharm", "Android Studio"
             ],
             "terminals": [
-                "com.apple.Terminal", "com.googlecode.iterm2",
-                "dev.warp.Warp-Stable", "io.alacritty", "com.mitchellh.ghostty"
+                "Terminal", "iTerm", "Warp", "Alacritty", "Ghostty"
             ],
             "social_cn": [
-                "com.tencent.xinWeChat", "com.tencent.qq",
-                "com.alibaba.DingTalkMac", "com.bytedance.macos.feishu",
+                "WeChat", "微信", "QQ", "DingTalk", "钉钉", "Feishu", "飞书"
             ],
             "social_intl": [
-                "com.hnc.Discord", "com.tinyspeck.slackmacgap",
-                "ru.keepcoder.Telegram", "net.whatsapp.WhatsApp",
+                "Discord", "Slack", "Telegram", "WhatsApp", "Messages", "信息"
             ],
             "music": [
-                "com.apple.Music", "com.spotify.client", "com.netease.163music",
+                "Music", "音乐", "Spotify", "NeteaseMusic", "网易云音乐", "QQMusic"
             ],
             "video": [
-                "com.typcn.bilern", "com.colliderli.iina", "com.firecore.infuse",
-                "org.videolan.vlc", "com.apple.QuickTimePlayerX",
+                "Bilibili", "IINA", "Infuse", "VLC", "QuickTime"
             ],
             "creative": [
-                "com.figma.Desktop", "com.adobe.Photoshop", "com.adobe.illustrator",
-                "com.bohemiancoding.sketch3", "com.apple.garageband",
-                "com.apple.FinalCut", "com.apple.logic10", "com.blackmagic-design.DaVinciResolve",
-                "org.blenderfoundation.blender"
+                "Figma", "Photoshop", "Illustrator", "Sketch", "GarageBand",
+                "Final Cut", "Logic Pro", "DaVinci", "Blender"
             ],
             "productivity": [
-                "notion.id", "md.obsidian", "com.apple.Notes", "com.runningwithcrayons.Alfred",
-                "com.apple.reminders", "com.apple.iCal", "com.raycast.macos"
+                "Notion", "Obsidian", "Notes", "备忘录", "Alfred", "Reminders", "提醒事项", "Calendar", "日历", "Raycast"
             ],
             "office": [
-                "com.apple.iWork.Pages", "com.apple.iWork.Numbers",
-                "com.microsoft.Word", "com.microsoft.Excel", "com.microsoft.Powerpoint",
+                "Pages", "Numbers", "Keynote", "Word", "Excel", "PowerPoint"
             ],
             "communication": [
-                "com.apple.mail", "com.apple.FaceTime", "com.readdle.smartemail-Mac",
-                "us.zoom.xos", "com.microsoft.teams2",
+                "Mail", "邮件", "FaceTime", "Spark", "Zoom", "Teams", "TencentMeeting", "腾讯会议"
             ],
             "system": [
-                "com.apple.systempreferences", "com.apple.ActivityMonitor",
-                "com.apple.AppStore", "com.apple.finder",
+                "System Settings", "系统设置", "Activity Monitor", "活动监视器", "App Store", "Finder", "访达"
             ],
             "reading": [
-                "com.apple.Preview", "com.apple.iBooksX", "com.apple.Photos",
+                "Preview", "预览", "Books", "图书", "Photos", "照片"
             ],
             "games": [
-                "com.apple.Chess", "com.valvesoftware.steam",
-                "com.epicgames.EpicGamesLauncher",
+                "Chess", "国际象棋", "Steam", "Epic Games"
             ],
             "ai": [
-                "com.openai.chat", "com.anthropic.claude", "com.sindresorhus.ChatGPT"
+                "ChatGPT", "Claude", "Gemini", "Kimi", "豆包", "文心一言", "千问", "智谱清言"
             ],
             "finance": [
-                "com.apple.stocks", "com.binance.mac", "com.tradingview.tradingviewapp",
-                "com.hexin.mac", "cn.futu.FutubullMac", "com.eastmoney.mac"
+                "Stocks", "股市", "Binance", "TradingView", "同花顺", "Futubull", "富途牛牛"
             ],
             "news": [
-                "com.apple.news", "com.netease.macnews", "com.ranchero.NetNewsWire-Evergreen"
-            ],
+                "News", "新闻", "NetNewsWire"
+            ]
         ]
         
         // ── 应用切换触发规则 ──────────────────────────────────
@@ -212,6 +287,8 @@ struct BubbleRuleSet: Codable {
         )
     }()
 }
+
+// MARK: - Rule Types
 
 /// 时间段触发规则
 ///

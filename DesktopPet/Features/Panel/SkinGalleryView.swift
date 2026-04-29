@@ -5,9 +5,8 @@ struct SkinGalleryView: View {
     let coordinator: AppCoordinator
     
     @State private var groupedSkins: [String: [SkinManifest]] = [:]
-    @State private var isShowingEditor = false
-    @State private var skinToEdit: SkinManifest? = nil
-    @State private var manifestSkinToEdit: SkinManifest? = nil
+    @State private var isShowingNewSkinEditor = false
+    @State private var filesSkinToEdit: SkinManifest? = nil
     
     private func iconFor(group: String) -> String {
         if group == "Beta Legacy" { return "flask.fill" }
@@ -18,20 +17,7 @@ struct SkinGalleryView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 32) {
                 
-                // 顶部说明区
-                HStack {
-                    Image(systemName: "info.circle.fill")
-                        .foregroundStyle(.blue)
-                    Text("实时热切换引擎。当前挂载：")
-                        .foregroundStyle(.secondary)
-                    Text(coordinator.petState.currentSkinID)
-                        .font(.system(.body, design: .monospaced).weight(.bold))
-                        .foregroundStyle(.primary)
-                }
-                .font(.subheadline)
-                .padding(.horizontal, 24)
-                .padding(.top, 24)
-                
+                // No top info area
                 if groupedSkins.isEmpty {
                     // 空状态提示
                     VStack(spacing: 16) {
@@ -55,26 +41,22 @@ struct SkinGalleryView: View {
                             skins: groupedSkins[groupName]!,
                             coordinator: coordinator,
                             isDisabled: false,
-                            onEditSkin: { skin in
-                                skinToEdit = skin
-                                isShowingEditor = true
-                            },
-                            onEditManifestSkin: { skin in
-                                manifestSkinToEdit = skin
+                            onEditFiles: { skin in
+                                filesSkinToEdit = skin
                             },
                             onRefresh: { refreshSkins() }
                         )
                     }
                 }
             }
+            .padding(.top, 24)
             .padding(.bottom, 40)
         }
-        .navigationTitle("主题皮肤与角色")
+        .navigationTitle("主题皮肤")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button(action: {
-                    skinToEdit = nil
-                    isShowingEditor = true
+                    isShowingNewSkinEditor = true
                 }) {
                     Label("导入新皮肤", systemImage: "plus")
                 }
@@ -84,19 +66,26 @@ struct SkinGalleryView: View {
                     Label("刷新", systemImage: "arrow.clockwise")
                 }
             }
+            ToolbarItem(placement: .automatic) {
+                Button(action: { coordinator.openSkinsDirectory() }) {
+                    Label("打开皮肤目录", systemImage: "folder")
+                }
+            }
         }
-        .sheet(isPresented: $isShowingEditor, onDismiss: { refreshSkins() }) {
-            SkinEditorModal(isPresented: $isShowingEditor, skinToEdit: skinToEdit)
+        .sheet(isPresented: $isShowingNewSkinEditor, onDismiss: { refreshSkins() }) {
+            SkinEditorModal(isPresented: $isShowingNewSkinEditor, skinToEdit: nil)
         }
-        .sheet(item: $manifestSkinToEdit, onDismiss: { refreshSkins() }) { skin in
-            ManifestEditorModal(skin: skin)
+        .sheet(item: $filesSkinToEdit, onDismiss: { refreshSkins() }) { skin in
+            SkinFilesEditorModal(skin: skin) {
+                coordinator.reloadPhraseBookIfCurrentSkin(skin)
+                coordinator.reloadRules()
+            }
         }
         .onAppear {
             refreshSkins()
         }
         .background(Color.clear)
     }
-    
     private func refreshSkins() {
         groupedSkins = SkinService.discoverAllSkins()
     }
@@ -110,8 +99,7 @@ struct SkinSectionView: View {
     let skins: [SkinManifest]
     let coordinator: AppCoordinator
     let isDisabled: Bool
-    var onEditSkin: ((SkinManifest) -> Void)? = nil
-    var onEditManifestSkin: ((SkinManifest) -> Void)? = nil
+    var onEditFiles: ((SkinManifest) -> Void)? = nil
     var onRefresh: (() -> Void)? = nil
     
     let columns = [GridItem(.adaptive(minimum: 140, maximum: 160), spacing: 20)]
@@ -141,8 +129,7 @@ struct SkinSectionView: View {
                         onDelete: {
                             deleteSkin(skin)
                         },
-                        onEdit: onEditSkin != nil ? { onEditSkin?(skin) } : nil,
-                        onEditManifest: onEditManifestSkin != nil ? { onEditManifestSkin?(skin) } : nil
+                        onEditFiles: onEditFiles != nil ? { onEditFiles?(skin) } : nil
                     )
                 }
             }

@@ -38,3 +38,5 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         # 不在 Dock 显示图标（纯菜单栏应用）
         INFOPLIST_KEY_LSUIElement: YES
+        INFOPLIST_KEY_NSCalendarsUsageDescription: DesktopPet 需要访问日历以便从聊天中创建系统日程。
+        INFOPLIST_KEY_NSRemindersUsageDescription: DesktopPet 需要访问提醒事项以便从聊天中创建待办提醒。
