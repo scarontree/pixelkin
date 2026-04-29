@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'DesktopPet' in project 'DesktopPet' (no dependencies)
